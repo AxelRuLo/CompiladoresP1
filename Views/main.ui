@@ -40,16 +40,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-<<<<<<< HEAD
-<<<<<<< HEAD
      <string notr="true"/>
-=======
-     <string notr="true">background-color: rgb(255, 170, 0);
-color: rgb(255, 255, 255);</string>
->>>>>>> e0bdef0 (interface adeed)
-=======
-     <string notr="true"/>
->>>>>>> 153a8e8 (new changes in interface)
     </property>
     <property name="text">
      <string>ANALIZAR CÓDIGO</string>
@@ -81,7 +72,7 @@ color: rgb(255, 255, 255);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Selecccionar archivo:</string>
@@ -97,16 +88,7 @@ color: rgb(255, 255, 255);</string>
      </rect>
     </property>
     <property name="styleSheet">
-<<<<<<< HEAD
-<<<<<<< HEAD
      <string notr="true"/>
-=======
-     <string notr="true">background-color: rgb(255, 85, 0);
-color: rgb(255, 255, 255);</string>
->>>>>>> e0bdef0 (interface adeed)
-=======
-     <string notr="true"/>
->>>>>>> 153a8e8 (new changes in interface)
     </property>
     <property name="text">
      <string>Cargar archivo</string>
@@ -186,19 +168,6 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>LIMPIAR CÓDIGO</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>180</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
     </property>
    </widget>
   </widget>
