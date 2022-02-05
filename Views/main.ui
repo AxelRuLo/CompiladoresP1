@@ -40,7 +40,12 @@
      </rect>
     </property>
     <property name="styleSheet">
+<<<<<<< HEAD
      <string notr="true"/>
+=======
+     <string notr="true">background-color: rgb(255, 170, 0);
+color: rgb(255, 255, 255);</string>
+>>>>>>> e0bdef0 (interface adeed)
     </property>
     <property name="text">
      <string>ANALIZAR CÓDIGO</string>
@@ -88,7 +93,12 @@
      </rect>
     </property>
     <property name="styleSheet">
+<<<<<<< HEAD
      <string notr="true"/>
+=======
+     <string notr="true">background-color: rgb(255, 85, 0);
+color: rgb(255, 255, 255);</string>
+>>>>>>> e0bdef0 (interface adeed)
     </property>
     <property name="text">
      <string>Cargar archivo</string>
