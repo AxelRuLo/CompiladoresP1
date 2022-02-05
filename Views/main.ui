@@ -41,11 +41,15 @@
     </property>
     <property name="styleSheet">
 <<<<<<< HEAD
+<<<<<<< HEAD
      <string notr="true"/>
 =======
      <string notr="true">background-color: rgb(255, 170, 0);
 color: rgb(255, 255, 255);</string>
 >>>>>>> e0bdef0 (interface adeed)
+=======
+     <string notr="true"/>
+>>>>>>> 153a8e8 (new changes in interface)
     </property>
     <property name="text">
      <string>ANALIZAR CÓDIGO</string>
@@ -94,11 +98,15 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="styleSheet">
 <<<<<<< HEAD
+<<<<<<< HEAD
      <string notr="true"/>
 =======
      <string notr="true">background-color: rgb(255, 85, 0);
 color: rgb(255, 255, 255);</string>
 >>>>>>> e0bdef0 (interface adeed)
+=======
+     <string notr="true"/>
+>>>>>>> 153a8e8 (new changes in interface)
     </property>
     <property name="text">
      <string>Cargar archivo</string>
