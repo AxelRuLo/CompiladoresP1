@@ -2,12 +2,13 @@ import ply.lex as lex
 import re
 
 
-tokens = ["ID","COMMENT","NUMEROSFLOTANTES", "NUMEROS", "IGUAL", "STRINGS","STRINGD", "LLAVES","IPARENTESIS","DPARENTESIS","NEW","PUNTOCOMA","CORCHETES","OBJETOPROPIEDAD","OPERADORES","COMA","OPERADORESARITMETICOS"]
-reservadas = {"do":"do",'if':'if','else':'else', 'elseif': 'elseif','function':'function','class':'class','extends':'extends','let':'let','const':'const','var':'var','while':'while',"true":"true","false":"false"}
+tokens = ["ID","COMMENT","NUMEROSFLOTANTES","DOSPUNTOS", "NUMEROS", "IGUAL", "STRINGS","STRINGD", "LLAVES","IPARENTESIS","DPARENTESIS","NEW","PUNTOCOMA","CORCHETES","OBJETOPROPIEDAD","OPERADORES","COMA","OPERADORESARITMETICOS"]
+reservadas = {'switch':'switch','case':'case', 'default': 'default',"do":"do",'if':'if','else':'else', 'elseif': 'elseif','function':'function','class':'class','extends':'extends','let':'let','const':'const','var':'var','while':'while',"true":"true","false":"false"}
 tokens = tokens + list(reservadas.values())
 
 t_ignore = ' \t\n'
 t_IGUAL = r'='
+t_DOSPUNTOS = r':'
 t_LLAVES = r'[{}]'
 t_CORCHETES= r'[\[\]]'
 t_NEW = r'new'
@@ -70,6 +71,7 @@ def _analizadorVariable():
     def t_error(t):
         print(f"invalido {t.value}")
         t.lexer.skip(1)
+        return t
     
     return lex.lex()
 
@@ -77,11 +79,24 @@ def analizar(cadena):
     analizador = _analizadorVariable()
     analizador.input(cadena)
     listaTokens = []
+    listaValorTokens = []
+    listaLineaEncontrado = []
+    listaGeneralTokens = []
+
     while True:
         tok = analizador.token()
-        listaTokens.append(tok)
+        listaGeneralTokens.append(tok)
         if(not tok) : break
-        print(tok)
-    print("---------------")
+        # print(tok)
+    # print("---------------")
+    for index in range(len(listaGeneralTokens)-1):
+        listaTokens.append(listaGeneralTokens[index].type)
+        listaValorTokens.append(listaGeneralTokens[index].value)
+        listaLineaEncontrado.append(listaGeneralTokens[index].lexpos)
+    print(listaGeneralTokens)
     print(listaTokens)
-    return listaTokens
+    print(listaValorTokens)
+    print(listaLineaEncontrado)
+    return listaTokens,listaValorTokens,listaLineaEncontrado
+
+
