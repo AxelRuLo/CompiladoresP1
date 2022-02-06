@@ -1,6 +1,8 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QTableWidgetItem
-from PyQt5 import uic, QtWidgets 
+from PyQt5 import uic, QtWidgets
+
+from Models.analizadorGeneral import analizar 
 
 text_file = ''
 
@@ -44,8 +46,10 @@ class Window(QMainWindow):
         llenar = True
         texto = self.textEdit_Campo.toPlainText()
         print(texto)
-        new_list = list(texto)
-        self.llenar_tabla(new_list, llenar)
+
+        listaTokens,listaValorTokens,listaLineaEncontrado = analizar(texto)
+
+        self.llenar_tabla(listaTokens, listaValorTokens, listaLineaEncontrado , llenar)
 
     def limpiarCodigo(self):
         new_list = []
@@ -57,15 +61,15 @@ class Window(QMainWindow):
         self.llenar_tabla(new_list, llenar)
 
 
-    def llenar_tabla(self, list: list, llenar: bool):
+    def llenar_tabla(self, listaTokens: list, listaValorTokens: list, listaLineaEncontrado: list , llenar: bool):
         row = 0
-        tamano = len(list)
+        tamano = len(listaTokens)
         self.tabla_tokens.setRowCount(tamano)
         while row < tamano:
             if(llenar):
-                self.tabla_tokens.setItem(row, 0, QtWidgets.QTableWidgetItem(str(list[row])))
-                self.tabla_tokens.setItem(row, 1, QtWidgets.QTableWidgetItem(str(list[row])))
-                self.tabla_tokens.setItem(row, 2, QtWidgets.QTableWidgetItem(str(list[row])))
+                self.tabla_tokens.setItem(row, 0, QtWidgets.QTableWidgetItem(str(listaTokens[row])))
+                self.tabla_tokens.setItem(row, 1, QtWidgets.QTableWidgetItem(str(listaValorTokens[row])))
+                self.tabla_tokens.setItem(row, 2, QtWidgets.QTableWidgetItem(str(listaLineaEncontrado[row])))
             else:
                 self.tabla_tokens.setItem(row, 0, QtWidgets.QTableWidgetItem(str('')))
                 self.tabla_tokens.setItem(row, 1, QtWidgets.QTableWidgetItem(str('')))

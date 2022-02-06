@@ -93,7 +93,7 @@ def analizar(cadena):
         listaTokens.append(listaGeneralTokens[index].type)
         listaValorTokens.append(listaGeneralTokens[index].value)
         listaLineaEncontrado.append(listaGeneralTokens[index].lexpos)
-    print(listaGeneralTokens)
+    # print(listaGeneralTokens)
     print(listaTokens)
     print(listaValorTokens)
     print(listaLineaEncontrado)
