@@ -47,6 +47,8 @@ class Window(QMainWindow):
     def limpiarCodigo(self):
         self.textEdit_Campo.clear()
         self.textField_selected_file.clear()
+        self.label_alert.hide()
+        self.label_file_sucessful.hide()
     
     
 if __name__ == '__main__':

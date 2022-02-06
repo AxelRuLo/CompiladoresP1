@@ -72,7 +72,11 @@
      </rect>
     </property>
     <property name="styleSheet">
+<<<<<<< HEAD
      <string notr="true">color: rgb(255, 255, 255);</string>
+=======
+     <string notr="true"/>
+>>>>>>> 1ac70e626de45b953d40a53b0cd7b68f2882a3f0
     </property>
     <property name="text">
      <string>Selecccionar archivo:</string>
@@ -170,6 +174,7 @@
      <string>LIMPIAR CÓDIGO</string>
     </property>
    </widget>
+<<<<<<< HEAD
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
@@ -183,6 +188,8 @@
      <string>PushButton</string>
     </property>
    </widget>
+=======
+>>>>>>> 1ac70e626de45b953d40a53b0cd7b68f2882a3f0
   </widget>
  </widget>
  <resources/>
