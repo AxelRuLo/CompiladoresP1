@@ -3,7 +3,7 @@ import re
 
 
 tokens = ["ID","COMMENT","NUMEROSFLOTANTES", "NUMEROS", "IGUAL", "STRINGS","STRINGD", "LLAVES","IPARENTESIS","DPARENTESIS","NEW","PUNTOCOMA","CORCHETES","OBJETOPROPIEDAD","OPERADORES","COMA","OPERADORESARITMETICOS"]
-reservadas = {'if':'if','else':'else', 'elseif': 'elseif','function':'function','class':'class','extends':'extends','let':'let','const':'const','var':'var','while':'WHILE',"True":"TRUE","False":"FALSE"}
+reservadas = {"do":"do",'if':'if','else':'else', 'elseif': 'elseif','function':'function','class':'class','extends':'extends','let':'let','const':'const','var':'var','while':'while',"true":"true","false":"false"}
 tokens = tokens + list(reservadas.values())
 
 t_ignore = ' \t\n'
@@ -85,6 +85,3 @@ def analizar(cadena):
     print("---------------")
     print(listaTokens)
     return listaTokens
-
-cadena = "class puto//comentario \t despues comentario"
-analizar(cadena)
