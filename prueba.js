@@ -1,8 +1,3 @@
-class _HOLA_ {
-
-
+if (x === -6){
+ console.log('hola')   
 }
-
-
-console.log('HOLA')
-
