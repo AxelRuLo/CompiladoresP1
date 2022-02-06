@@ -2,8 +2,8 @@ import ply.lex as lex
 import re
 
 
-tokens = ["ID","NUMEROSFLOTANTES", "NUMEROS", "IGUAL", "STRINGS","STRINGD", "LLAVES","IPARENTESIS","DPARENTESIS","NEW","PUNTOCOMA","CORCHETES","OBJETOPROPIEDAD","OPERADORES","COMA","OPERADORESARITMETICOS"]
-reservadas = {'function':'function','class':'class','extends':'extends','let':'let','const':'const','var':'var','while':'WHILE',"True":"TRUE","False":"FALSE"}
+tokens = ["ID","COMMENT","NUMEROSFLOTANTES", "NUMEROS", "IGUAL", "STRINGS","STRINGD", "LLAVES","IPARENTESIS","DPARENTESIS","NEW","PUNTOCOMA","CORCHETES","OBJETOPROPIEDAD","OPERADORES","COMA","OPERADORESARITMETICOS"]
+reservadas = {'if':'if','else':'else', 'elseif': 'elseif','function':'function','class':'class','extends':'extends','let':'let','const':'const','var':'var','while':'WHILE',"True":"TRUE","False":"FALSE"}
 tokens = tokens + list(reservadas.values())
 
 t_ignore = ' \t\n'
@@ -20,6 +20,7 @@ t_OPERADORESARITMETICOS = r'[+]|-'
 def _analizadorVariable():
 
 
+
     def t_ID(t):
         r'[a-zA-Z_][a-zA-Z0-9_]*'
         if(t.value in reservadas):
@@ -27,9 +28,12 @@ def _analizadorVariable():
             t.type  = t.value
         return t
 
+    def t_COMMENT(t):
+        r'[/][/].*[\t\n]'
+        return t
     
     def t_OPERADORES(t):
-        r'(>=)|(==)|(<=)|(<)|(>)|(!=)'
+        r'(===)|(>=)|(==)|(<=)|(<)|(>)|(!=)'
 
         return t
 
@@ -54,10 +58,6 @@ def _analizadorVariable():
             t.type  = t.value
         return t
 
-
-    def t_COMMENT(t):
-        r'[/][/].*'
-        pass
 
     def t_STRINGS(t):
         r"['][a-zA-Z0-9!#$%&/'*+-.{}^_`\s|~:]*[']"
@@ -86,5 +86,5 @@ def analizar(cadena):
     print(listaTokens)
     return listaTokens
 
-cadena = "class _Rectangulo2 extends Animal\{\}"
+cadena = "class puto//comentario \t despues comentario"
 analizar(cadena)
