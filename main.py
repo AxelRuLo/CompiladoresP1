@@ -53,12 +53,15 @@ class Window(QMainWindow):
 
     def limpiarCodigo(self):
         new_list = []
+        new_list_2 = []
+        new_list_3 = []
+
         llenar = False 
         self.textEdit_Campo.clear()
         self.textField_selected_file.clear()
         self.label_alert.hide()
         self.label_file_sucessful.hide()
-        self.llenar_tabla(new_list, llenar)
+        self.llenar_tabla(new_list, new_list_2, new_list_3, llenar)
 
 
     def llenar_tabla(self, listaTokens: list, listaValorTokens: list, listaLineaEncontrado: list , llenar: bool):
