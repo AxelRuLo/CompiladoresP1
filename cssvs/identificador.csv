@@ -1,0 +1,15 @@
+regla,a...z,A...Z,0...9,let,var ,const,',"""",espacio,_,.,new,(),{},=,;,[],$
+P,,,,T L RI SI AS F ,T L RI SI AS F ,T L RI SI AS F ,,,,,,,,,,,,
+T,,,,let,var ,const,,,,,,,,,,,,
+RI,L RI,L RI,D RI,,,,,,,S RI,,,vacio,,vacio,vacio,,vacio
+AS,L RI,L RI,D NE NO,,,,'STR',"""STR""",,,,new RI(),,{},,,[],
+STR,L STR,L STR,D STR,,,,vacio,vacio,espacio STR,ST STR,ST STR,,,,,,,
+L,a...z,A...Z,,,,,,,,,,,,,,,,
+D,,,0...9,,,,,,,,,,,,,,,
+S,,,,,,,,,,_,,,,,,,,
+SI,,,,,,,,,,,,,,,=,,,
+ST ,,,,,,,,,,_,.,,,,,,,
+F,,,,,,,,,,,,,,,,;,,$
+SP,,,,,,,,,,,.,,,,,,,
+NE,,,D NE,,,,,,,,vacio,,,,,vacio,,vacio
+NO,,,,,,,,,,,SP,,,,,vacio,,vacio
