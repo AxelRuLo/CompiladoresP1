@@ -79,5 +79,5 @@ class separador:
         print(listaSimbolos)
 
 
-x = separador('const constobjet = new a();')
+x = separador('if()
 x.simbolosId()

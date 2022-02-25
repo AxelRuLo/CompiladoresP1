@@ -3,7 +3,7 @@ import re
 
 
 tokens = ["ID","COMMENT","NUMEROSFLOTANTES","DOSPUNTOS", "NUMEROS", "IGUAL", "STRINGS","STRINGD", "LLAVES","IPARENTESIS","DPARENTESIS","NEW","PUNTOCOMA","CORCHETES","OBJETOPROPIEDAD","OPERADORES","COMA","OPERADORESARITMETICOS"]
-reservadas = {'switch':'switch','case':'case', 'default': 'default',"do":"do",'if':'if','else':'else', 'elseif': 'elseif','function':'function','class':'class','extends':'extends','let':'let','const':'const','var':'var','while':'while',"true":"true","false":"false"}
+reservadas = {'new':'new','switch':'switch','case':'case', 'default': 'default',"do":"do",'if':'if','else':'else', 'elseif': 'elseif','function':'function','class':'class','extends':'extends','let':'let','const':'const','var':'var','while':'while',"true":"true","false":"false"}
 tokens = tokens + list(reservadas.values())
 
 t_ignore = ' \t\n'
@@ -94,9 +94,6 @@ def analizar(cadena):
         listaValorTokens.append(listaGeneralTokens[index].value)
         listaLineaEncontrado.append(listaGeneralTokens[index].lexpos)
     # print(listaGeneralTokens)
-    print(listaTokens)
-    print(listaValorTokens)
-    print(listaLineaEncontrado)
     return listaTokens,listaValorTokens,listaLineaEncontrado
 
 
