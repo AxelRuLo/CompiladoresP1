@@ -212,6 +212,11 @@ class AlgoritmoNoRecursivo:
                         or reglaNueva == ">="
                         or reglaNueva == "<="
                         or reglaNueva == "!="
+                        or reglaNueva == "<"
+                        or reglaNueva == ">"
+                        or reglaNueva == "if"
+                        or reglaNueva == "else"
+                        or reglaNueva == "else if"
                     ):
                         self.pila.pop()
                         index = index + 1
@@ -267,7 +272,9 @@ class AlgoritmoNoRecursivo:
             print(f"se encontro conicidencia con la regla {nuevaRegla}")
         return nuevaRegla
 
-
+lista = ["if","(","i",">","f",")","{","}","else if","(","b","a","b",">","a",")","{","}",]
+algoritmo = AlgoritmoNoRecursivo("cssvs/ifs.csv","T")
+print(algoritmo.ejecutarAlgoritmo(lista))
 
 
  
