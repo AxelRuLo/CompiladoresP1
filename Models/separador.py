@@ -1,5 +1,5 @@
 
-from numpy import append
+
 
 
 class separador:
@@ -69,15 +69,17 @@ class separador:
     def simbolosId(self):
         listaSimbolos = []
         simbolosCrudos = self._separarID()
+        print(simbolosCrudos)
         for i in simbolosCrudos:
             if(i != "new" and i != "const" and i != "var" and i != "let" and i != "{}" and i != "()" and i != "[]"):
                 for x in i:
                     listaSimbolos.append(x)
             else:
                 listaSimbolos.append(i)
-        print(simbolosCrudos)
-        print(listaSimbolos)
+        # print(simbolosCrudos)
+        # print(listaSimbolos)
+        return listaSimbolos
 
 
-x = separador('if()
-x.simbolosId()
+# x = separador('const constobjet = new a();')
+# x.simbolosId()
