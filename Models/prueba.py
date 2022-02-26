@@ -12,7 +12,6 @@ def analizador_lexico(text):
         return False
     else:
         token,valor = buscar_llaves(token.copy(),valor.copy())
-        print(token)
         for j in range(len(token)):
             frase_examinar = []
             i = 0
@@ -42,7 +41,7 @@ def analizador_lexico(text):
                             frase_examinar.append(caracter)
                 i = i+1
             frases_examinar.append(frase_examinar)
-        print( frases_examinar)
+        return frases_examinar
 
 def buscar_llaves(token:list,valores:list):
     valor = valores.copy()
@@ -92,7 +91,6 @@ def buscar_llaves(token:list,valores:list):
     if(len(valores)>0):
         valores_new += [valores]
         token_new +=[token]
-        print(valores_new)
     return token_new,valores_new
 
 

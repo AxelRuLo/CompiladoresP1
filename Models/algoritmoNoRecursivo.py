@@ -1,4 +1,5 @@
 from xml.dom import ValidationErr
+from prueba import analizador_lexico
 from analizadorGeneral import analizar
 import string
 import pandas
@@ -163,6 +164,59 @@ class AlgoritmoNoRecursivo:
         else:
             print(f"se encontro conicidencia con la regla {nuevaRegla}")
         return nuevaRegla
+
+def intAlgoritmo(texto):
+    print(texto)
+    listas = analizador_lexico(texto)
+    print(listas)
+    alClase = AlgoritmoNoRecursivo("../cssvs/clases.csv","C")
+    alFunciones = AlgoritmoNoRecursivo("../cssvs/funciones.csv","I")
+    alWhiles = AlgoritmoNoRecursivo("../cssvs/whiles.csv","P")
+    alIdentificadores = AlgoritmoNoRecursivo("../cssvs/identificador.csv","P")
+    alSwitch = AlgoritmoNoRecursivo("../cssvs/switch.csv","T")
+    alIf = AlgoritmoNoRecursivo("../cssvs/ifs.csv","T")
+    resultado = None
+    resultados = []
+    pila_error = []
+    for lista in listas:
+        print(lista)
+        pila_error = []
+        resultado = alClase.ejecutarAlgoritmo(lista.copy())
+        if(resultado != 'valido'):
+            resultado = alFunciones.ejecutarAlgoritmo(lista.copy())
+            if(resultado != 'valido' and len(resultado)>1):
+                pila_error = resultado.copy()
+        if(resultado != 'valido'):
+            resultado = alWhiles.ejecutarAlgoritmo(lista.copy())
+            if(resultado != 'valido' and len(resultado)>1):
+                pila_error = resultado.copy()
+        if(resultado != 'valido'):
+            resultado = alIdentificadores.ejecutarAlgoritmo(lista.copy())
+            print("___________________________")
+            print(resultado)
+            if(resultado != 'valido' and len(resultado)>1):
+                print("___________________________")
+                print("entre a la pila de error")
+                pila_error = resultado.copy()
+        if(resultado != 'valido'):
+            resultado = alSwitch.ejecutarAlgoritmo(lista.copy())
+            if(resultado != 'valido' and len(resultado)>1):
+                pila_error = resultado.copy()
+        if(resultado != 'valido'):
+            resultado = alIf.ejecutarAlgoritmo(lista.copy())
+            if(resultado != 'valido' and len(resultado)>1):
+                pila_error = resultado.copy()
+        if(resultado != 'valido'):
+            resultados.append([lista,pila_error])
+        else:
+            resultados.append(resultado)
+
+    print(resultados)
+
+intAlgoritmo("class Rectangulo extends Figures{ let circulo_radio = 5 }")
+
+
+
 
 # lista = ['class', 'R', 'e', 'c', 't', 'a', 'n', 'g', 'u', 'l', 'o', '{','let','aaa','=',"5",'}']
 # algoritmoClase = AlgoritmoNoRecursivo("cssvs/clases.csv","C")
