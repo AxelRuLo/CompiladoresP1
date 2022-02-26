@@ -166,9 +166,9 @@ class AlgoritmoNoRecursivo:
         return nuevaRegla
 
 def intAlgoritmo(texto):
-    print(texto)
     listas = analizador_lexico(texto)
-    print(listas)
+    if(listas == False):
+        return False
     alClase = AlgoritmoNoRecursivo("../cssvs/clases.csv","C")
     alFunciones = AlgoritmoNoRecursivo("../cssvs/funciones.csv","I")
     alWhiles = AlgoritmoNoRecursivo("../cssvs/whiles.csv","P")
@@ -211,9 +211,9 @@ def intAlgoritmo(texto):
         else:
             resultados.append(resultado)
 
-    print(resultados)
+    return resultados
 
-intAlgoritmo("class Rectangulo extends Figures{ let circulo_radio = 5 }")
+print(intAlgoritmo("class Rectangulo extends Figures{ let circulo_radio = 5}"))
 
 
 
