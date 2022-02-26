@@ -8,6 +8,7 @@ def analizador_lexico(text):
     frases_examinar = []
     # token,valor,linea = analizar("class Rectangulo extends Animal ()")
     token,valor,linea = analizar(text)
+    
     if(token.__contains__("error")):
         return False
     else:
@@ -18,6 +19,9 @@ def analizador_lexico(text):
                 i = 0
                 while(i < len(token[j])):
                     if(token[j][i] == str(valor[j][i])):
+                        # if(str(token[j][i] == "elseif")):
+                        #     frase_examinar.append("else if")
+                        # else:
                         frase_examinar.append(str(valor[j][i]))
                     else:
                         if(

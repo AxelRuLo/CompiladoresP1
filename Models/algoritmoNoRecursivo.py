@@ -134,6 +134,8 @@ class AlgoritmoNoRecursivo:
         
 
     def _sustituirLegible(self, simbolo):
+        if(simbolo == "elseif"):
+            return "else if"
         if len(simbolo) > 1:
             return simbolo
         if string.ascii_lowercase.__contains__(simbolo):
@@ -165,10 +167,13 @@ class AlgoritmoNoRecursivo:
             print(f"se encontro conicidencia con la regla {nuevaRegla}")
         return nuevaRegla
 
-def intAlgoritmo(texto):
+def intAlgoritmo(texto:str):
+    texto = texto.replace("else if","elseif")
+    print(texto)
     listas = analizador_lexico(texto)
     if(listas == False):
         return False
+    print(listas)
     alClase = AlgoritmoNoRecursivo("../cssvs/clases.csv","C")
     alFunciones = AlgoritmoNoRecursivo("../cssvs/funciones.csv","I")
     alWhiles = AlgoritmoNoRecursivo("../cssvs/whiles.csv","P")
@@ -179,7 +184,6 @@ def intAlgoritmo(texto):
     resultados = []
     pila_error = []
     for lista in listas:
-        print(lista)
         pila_error = []
         resultado = alClase.ejecutarAlgoritmo(lista.copy())
         if(resultado != 'valido'):
@@ -213,7 +217,7 @@ def intAlgoritmo(texto):
 
     return resultados
 
-print(intAlgoritmo("class Rectangulo extends Figures{ let circulo_radio = 5}"))
+print(intAlgoritmo("switch(5>6){}"))
 
 
 
