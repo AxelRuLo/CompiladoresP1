@@ -1,138 +1,24 @@
+from xml.dom import ValidationErr
 from analizadorGeneral import analizar
 import string
 import pandas
 
-
-class separador:
-    def __init__(self, cadena):
-        self.cadena = cadena
-
-    def _separarID(self):
-        isString = False
-        listaSeparados = []
-        listaEliminar = []
-        listaIgual = ["="]
-        cadenaTratada = self.cadena
-        cadenaTratada = cadenaTratada.split(" = ")
-
-        if len(cadenaTratada) > 2 or len(cadenaTratada) < 2:
-            return False
-
-        if self.cadena.count("()") > 1:
-            return False
-        if self.cadena.count("[]") > 1:
-            return False
-        if self.cadena.count("{}") > 1:
-            return False
-
-        if cadenaTratada[1][0] == "'":
-            isString = True
-            cadenaTratada[1] = cadenaTratada[1].replace(" ", "")
-        if cadenaTratada[1][0] == '"':
-            isString = True
-            cadenaTratada[1] = cadenaTratada[1].replace(" ", "")
-
-        cadena = cadenaTratada[0].split() + listaIgual + cadenaTratada[1].split()
-
-        rango = len(cadena)
-        for i in range(rango):
-            if (
-                cadena[i] == "let"
-                or cadena[i] == "const"
-                or cadena[i] == "var"
-                or cadena[i] == "new"
-            ):
-                # print("es un lexema",cadena[i])
-                listaSeparados.append(cadena[i])
-                listaEliminar.append(i)
-            elif "()" in cadena[i] and isString == False:
-                # print("entro a parenteisi")
-                cadena[i] = cadena[i].replace("()", " () ")
-                listaParentesis = cadena[i].split()
-                for i in listaParentesis:
-                    listaSeparados.append(i)
-            elif "[]" in cadena[i] and isString == False:
-                # print("entro a corchetes")
-                cadena[i] = cadena[i].replace("[]", " [] ")
-                listaParentesis = cadena[i].split()
-                for i in listaParentesis:
-                    listaSeparados.append(i)
-            elif "{}" in cadena[i] and isString == False:
-                # print("entro a llaves")
-                cadena[i] = cadena[i].replace("{}", " {} ")
-                listaParentesis = cadena[i].split()
-                for i in listaParentesis:
-                    listaSeparados.append(i)
-            else:
-                listaSeparados.append(cadena[i])
-        return listaSeparados
-
-    def simbolosId(self):
-        listaSimbolos = []
-        simbolosCrudos = self._separarID()
-        # print(simbolosCrudos)
-        if simbolosCrudos == False:
-            return False
-        for i in simbolosCrudos:
-            if (
-                i != "new"
-                and i != "const"
-                and i != "var"
-                and i != "let"
-                and i != "{}"
-                and i != "()"
-                and i != "[]"
-            ):
-                for x in i:
-                    listaSimbolos.append(x)
-            else:
-                listaSimbolos.append(i)
-        # print(simbolosCrudos)
-        # print(listaSimbolos)
-        return listaSimbolos
-
-def seprar(text):
-    frase_examinar = []
-    # token,valor,linea = analizar("class Rectangulo extends Animal ()")
-    token,valor,linea = analizar(text)
-    if(token.__contains__("error")):
-        return False
-    else:
-        # buscar_llaves(token.copy(),valor.copy())
-        i = 0
-        while(i < len(token)):
-            if(token[i] == str(valor[i])):
-                frase_examinar.append(str(valor[i]))
-            else:
-                if(token[i]=="LLAVES" or token[i]=="CORCHETES" or token[i]=="IPARENTESIS"):
-                    if(i+1 <len(token)):
-
-                        if(token[i+1]=="LLAVES" or token[i+1]=="CORCHETES" or token[i+1]=="DPARENTESIS"):
-                            frase_examinar.append(str(valor[i])+str(valor[i+1]))
-                            i = i+1
-                        else:
-                            frase_examinar.append(str(valor[i]))
-                    else:
-                        frase_examinar.append(str(valor[i]))
-                else:
-                    for caracter in str(valor[i]):
-                        frase_examinar.append(caracter)
-            i = i+1
-        return frase_examinar
 
 class AlgoritmoNoRecursivo:
     def __init__(self, direccion, reglaInicial):
         matriz = pandas.read_csv(direccion, header=0)
         self.matriz = matriz
         self.reglas = self.matriz["regla"].to_list()
-        self.pila = []
+        self.pila = ["$"]
+        self.reglaInicial = reglaInicial
         self.pila.append(reglaInicial)
-
-        print(self.reglas)
 
         pass
 
     def ejecutarAlgoritmo(self, listaSimbolos: list):
+        self.pila.clear()
+        self.pila.append("$")
+        self.pila.append(self.reglaInicial)
         # print(listaSimbolos)
         try:
 
@@ -149,7 +35,7 @@ class AlgoritmoNoRecursivo:
             while numeroElementosListaSimbolos > -1:
 
                 if(len(self.pila)==0 and index!=len(listaSimbolos)):
-                    return "no valida"
+                    return self.pila
              
                 
 
@@ -164,8 +50,7 @@ class AlgoritmoNoRecursivo:
                 try:
                     reglaAnalizar = self.pila.pop()
                 except:
-                    if(len(listaSimbolos)<index):
-                        print(listaSimbolos[index])
+                    pass
 
 
 
@@ -182,7 +67,7 @@ class AlgoritmoNoRecursivo:
                 else:
                     reglaNueva = self._buscarReglaExisitente(reglaAnalizar, simboloBusacar)
                     if reglaNueva == False:
-                        return "error"
+                        return self.pila
 
                     if (
                         reglaNueva == ";"
@@ -216,7 +101,13 @@ class AlgoritmoNoRecursivo:
                         or reglaNueva == ">"
                         or reglaNueva == "if"
                         or reglaNueva == "else"
+                        or reglaNueva == "switch"
+                        or reglaNueva == "case"
+                        or reglaNueva == "break"
+                        or reglaNueva == "default"
                         or reglaNueva == "else if"
+                        or reglaNueva == "extends"
+                        or reglaNueva == "class"
                     ):
                         self.pila.pop()
                         index = index + 1
@@ -235,9 +126,10 @@ class AlgoritmoNoRecursivo:
             if(len(self.pila)==0 and simboloBusacar=="$"):
                 return "valido"
             else:
-                return "no valido"
-        except ValueError :
-            return ValueError
+                return self.pila
+        except Exception:
+            print(Exception.args())
+            return self.pila
         
 
     def _sustituirLegible(self, simbolo):
@@ -272,9 +164,16 @@ class AlgoritmoNoRecursivo:
             print(f"se encontro conicidencia con la regla {nuevaRegla}")
         return nuevaRegla
 
-lista = ["if","(","i",">","f",")","{","}","else if","(","b","a","b",">","a",")","{","}",]
-algoritmo = AlgoritmoNoRecursivo("cssvs/ifs.csv","T")
-print(algoritmo.ejecutarAlgoritmo(lista))
+# lista = ['class', 'R', 'e', 'c', 't', 'a', 'n', 'g', 'u', 'l', 'o', '{','let','aaa','=',"5",'}']
+# algoritmoClase = AlgoritmoNoRecursivo("cssvs/clases.csv","C")
+# algoritmoWhiles = AlgoritmoNoRecursivo("cssvs/clases.csv","C")
+# algoritmo = AlgoritmoNoRecursivo("cssvs/clases.csv","C")
+# algoritmo = AlgoritmoNoRecursivo("cssvs/clases.csv","C")
+# print(algoritmo.ejecutarAlgoritmo(lista))
+# lista = ['class', 'R', 'e', 'c', 't', 'a', 'n', 'g', 'u', 'l', 'o', 'extends', 'A', 'n', 'i', 'm', 'a', 'l', '{}']
+# print(algoritmo.ejecutarAlgoritmo(lista))
+# lista = ['class', 'R', 'e', 'c', 't', 'a', 'n', 'g', 'u', 'l', 'o', '{}']
+# print(algoritmo.ejecutarAlgoritmo(lista))
 
 
  
