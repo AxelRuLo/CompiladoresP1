@@ -12,6 +12,7 @@ def analizador_lexico(text):
         return False
     else:
         token,valor = buscar_llaves(token.copy(),valor.copy())
+        print(token)
         for j in range(len(token)):
             frase_examinar = []
             i = 0
@@ -19,9 +20,16 @@ def analizador_lexico(text):
                 if(token[j][i] == str(valor[j][i])):
                     frase_examinar.append(str(valor[j][i]))
                 else:
-                    if(token[j][i]=="LLAVES" or token[j][i]=="CORCHETES" or token[j][i]=="IPARENTESIS"):
-                        if(i+1 <len(token)):
-
+                    if(
+                        (
+                            (token[j][i]=="LLAVES" and token[j].__contains__("class")) 
+                            or (token[j][i]=="LLAVES" and token[j].__contains__("function")) 
+                            or (token[j][i]=="LLAVES" and (token[j].__contains__("let") or token[j].__contains__("var") or token[j].__contains__("const ") or token[j].__contains__("new"))) 
+                            )
+                    or (token[j][i]=="CORCHETES" and (token[j].__contains__("let") or token[j].__contains__("var") or token[j].__contains__("const ") or token[j].__contains__("new")))
+                    or (token[j][i]=="IPARENTESIS" and (token[j].__contains__("let") or token[j].__contains__("var") or token[j].__contains__("const ") or token[j].__contains__("new")))
+                    ):
+                        if(i+1 <len(token[j])):
                             if(token[j][i+1]=="LLAVES" or token[j][i+1]=="CORCHETES" or token[j][i+1]=="DPARENTESIS"):
                                 frase_examinar.append(str(valor[j][i])+str(valor[j][i+1]))
                                 i = i+1
@@ -34,7 +42,7 @@ def analizador_lexico(text):
                             frase_examinar.append(caracter)
                 i = i+1
             frases_examinar.append(frase_examinar)
-        print(frases_examinar)
+        print( frases_examinar)
 
 def buscar_llaves(token:list,valores:list):
     valor = valores.copy()
@@ -90,4 +98,4 @@ def buscar_llaves(token:list,valores:list):
 
 
     
-print(analizador_lexico("let atributo = 'assss' "))
+# print(analizador_lexico("if(){let const = new []}"))
