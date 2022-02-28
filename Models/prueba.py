@@ -233,7 +233,6 @@ def separ_atributos(lista : list):
     token = ['switch',"do",'if','function','class','let','const','var','while',]
     indexs = []
     anterior = 0
-    print(lista)
     for valor in lista:
         index = []
         for i in range(len(valor)):
@@ -249,7 +248,6 @@ def separ_atributos(lista : list):
 
                         
         indexs.append(index)
-    print("-------------------------------")
     for i in range(len(indexs)):
         if(len(indexs[i])>1):
             aux_valor = lista[i]
@@ -257,10 +255,8 @@ def separ_atributos(lista : list):
             for j in range(len(indexs[i])):
                 if(j+1<len(indexs[i])):
                     valor_new.append(aux_valor[indexs[i][j]:indexs[i][j+1]])
-                    print(aux_valor[indexs[i][j]:indexs[i][j+1]])
                 else:
                     valor_new.append(aux_valor[indexs[i][j]:len(aux_valor)])
-                    print(aux_valor[indexs[i][j]:len(aux_valor)])
             del lista[i]
             lista.extend(valor_new)
     return lista

@@ -170,15 +170,11 @@ class AlgoritmoNoRecursivo:
 
 def intAlgoritmo(texto:str):
     texto = texto.replace("else if","elseif")
-    print(texto)
     listas = analizador_lexico(texto)
     if(listas == False):
         return False
 
     listas = separ_atributos(listas.copy())
-        
-    print(listas)
-
 
     alClase = AlgoritmoNoRecursivo("../cssvs/clases.csv","C")
     alFunciones = AlgoritmoNoRecursivo("../cssvs/funciones.csv","I")
