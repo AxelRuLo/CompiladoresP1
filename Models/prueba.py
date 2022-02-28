@@ -1,7 +1,9 @@
 
 
 from operator import le
-from analizadorGeneral import analizar
+
+from Models.analizadorGeneral import analizar
+
 
 
 def analizador_lexico(text):

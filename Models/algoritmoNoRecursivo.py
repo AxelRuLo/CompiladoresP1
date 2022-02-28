@@ -1,6 +1,5 @@
 from xml.dom import ValidationErr
-from prueba import analizador_lexico,separ_atributos
-from analizadorGeneral import analizar
+from Models.prueba import analizador_lexico, separ_atributos
 import string
 import pandas
 
@@ -32,7 +31,7 @@ class AlgoritmoNoRecursivo:
             # print(numeroElementosListaSimbolos)
             index = 0
 
-            print("INICIA EL ALGORITMO \n")
+            # print("INICIA EL ALGORITMO \n")
             while numeroElementosListaSimbolos > -1:
 
                 if(len(self.pila)==0 and index!=len(listaSimbolos)):
@@ -40,8 +39,8 @@ class AlgoritmoNoRecursivo:
              
                 
 
-                print(f"\n PASADA NUMERO {index} ")
-                print(f"esta es mi pila {self.pila}")
+                # print(f"\n PASADA NUMERO {index} ")
+                # print(f"esta es mi pila {self.pila}")
 
                 try:
                     simboloBusacar = listaSimbolos[index]
@@ -56,9 +55,9 @@ class AlgoritmoNoRecursivo:
 
 
                 self.pila.append(reglaAnalizar)
-                print(
-                    f"esta es mi simbolo {simboloBusacar}, esta es mi regla analizar : {reglaAnalizar}"
-                )
+                # print(
+                #     f"esta es mi simbolo {simboloBusacar}, esta es mi regla analizar : {reglaAnalizar}"
+                # )
 
                 if simboloBusacar == reglaAnalizar:
                     self.pila.pop()
@@ -148,7 +147,7 @@ class AlgoritmoNoRecursivo:
     def _buscarReglaExisitente(self, regla, simboloBuscar):
         if(regla == "$"):
             return False
-        print(f"estoy buscando el simbolo {simboloBuscar} con la regla {regla}")
+        # print(f"estoy buscando el simbolo {simboloBuscar} con la regla {regla}")
         simboloBuscar = self._sustituirLegible(simboloBuscar)
         indexBusqueda = self.reglas.index(regla)
         nuevaRegla = ""
@@ -176,12 +175,12 @@ def intAlgoritmo(texto:str):
 
     listas = separ_atributos(listas.copy())
 
-    alClase = AlgoritmoNoRecursivo("../cssvs/clases.csv","C")
-    alFunciones = AlgoritmoNoRecursivo("../cssvs/funciones.csv","I")
-    alWhiles = AlgoritmoNoRecursivo("../cssvs/whiles.csv","P")
-    alIdentificadores = AlgoritmoNoRecursivo("../cssvs/identificador.csv","P")
-    alSwitch = AlgoritmoNoRecursivo("../cssvs/switch.csv","T")
-    alIf = AlgoritmoNoRecursivo("../cssvs/ifs.csv","T")
+    alClase = AlgoritmoNoRecursivo("cssvs/clases.csv","C")
+    alFunciones = AlgoritmoNoRecursivo("cssvs/funciones.csv","I")
+    alWhiles = AlgoritmoNoRecursivo("cssvs/whiles.csv","P")
+    alIdentificadores = AlgoritmoNoRecursivo("cssvs/identificador.csv","P")
+    alSwitch = AlgoritmoNoRecursivo("cssvs/switch.csv","T")
+    alIf = AlgoritmoNoRecursivo("cssvs/ifs.csv","T")
     resultado = None
     resultados = []
     pila_error = []
@@ -220,7 +219,7 @@ def intAlgoritmo(texto:str):
 # print(intAlgoritmo("if(true){ switch(mes){ case 1: if(5>5){} break; case 2: if(5>5){} case 3: if(5>5){}  } }else {}"))
 # print(intAlgoritmo("function correr(){let algo = 5;let algo = 5;}"))
 # print(intAlgoritmo("function prueba1(){let variable1 = 0; let variable1 = 5; switch(variable1){case 1:}}"))
-print(intAlgoritmo("do{ switch(mes){ case 1: if(5>5){} break; case 2: if(5>5){} case 3: if(5>5){}  } }while(true); whila(true){}"))
+# print(intAlgoritmo("do{ switch(mes){ case 1: if(5>5){} break; case 2: if(5>5){} case 3: if(5>5){}  } }while(true); whila(true){}"))
 
 
 
