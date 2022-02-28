@@ -1,5 +1,5 @@
 from xml.dom import ValidationErr
-from prueba import analizador_lexico
+from prueba import analizador_lexico,separ_atributos
 from analizadorGeneral import analizar
 import string
 import pandas
@@ -56,7 +56,6 @@ class AlgoritmoNoRecursivo:
 
 
                 self.pila.append(reglaAnalizar)
-
                 print(
                     f"esta es mi simbolo {simboloBusacar}, esta es mi regla analizar : {reglaAnalizar}"
                 )
@@ -147,6 +146,8 @@ class AlgoritmoNoRecursivo:
         return simbolo
 
     def _buscarReglaExisitente(self, regla, simboloBuscar):
+        if(regla == "$"):
+            return False
         print(f"estoy buscando el simbolo {simboloBuscar} con la regla {regla}")
         simboloBuscar = self._sustituirLegible(simboloBuscar)
         indexBusqueda = self.reglas.index(regla)
@@ -173,7 +174,12 @@ def intAlgoritmo(texto:str):
     listas = analizador_lexico(texto)
     if(listas == False):
         return False
+
+    listas = separ_atributos(listas.copy())
+        
     print(listas)
+
+
     alClase = AlgoritmoNoRecursivo("../cssvs/clases.csv","C")
     alFunciones = AlgoritmoNoRecursivo("../cssvs/funciones.csv","I")
     alWhiles = AlgoritmoNoRecursivo("../cssvs/whiles.csv","P")
@@ -187,29 +193,27 @@ def intAlgoritmo(texto:str):
         pila_error = []
         resultado = alClase.ejecutarAlgoritmo(lista.copy())
         if(resultado != 'valido'):
-            resultado = alFunciones.ejecutarAlgoritmo(lista.copy())
-            if(resultado != 'valido' and len(resultado)>1):
-                pila_error = resultado.copy()
+            pila_error.append(resultado.copy())
         if(resultado != 'valido'):
-            resultado = alWhiles.ejecutarAlgoritmo(lista.copy())
-            if(resultado != 'valido' and len(resultado)>1):
-                pila_error = resultado.copy()
+            resultado = alFunciones.ejecutarAlgoritmo(lista.copy()) 
+            if(resultado != 'valido'):
+                pila_error.append(resultado.copy())
+        if(resultado != 'valido'):
+            resultado = alWhiles.ejecutarAlgoritmo(lista.copy()) 
+            if(resultado != 'valido'):
+                pila_error.append(resultado.copy())
         if(resultado != 'valido'):
             resultado = alIdentificadores.ejecutarAlgoritmo(lista.copy())
-            print("___________________________")
-            print(resultado)
-            if(resultado != 'valido' and len(resultado)>1):
-                print("___________________________")
-                print("entre a la pila de error")
-                pila_error = resultado.copy()
+            if(resultado != 'valido'):
+                pila_error.append(resultado.copy())
         if(resultado != 'valido'):
             resultado = alSwitch.ejecutarAlgoritmo(lista.copy())
-            if(resultado != 'valido' and len(resultado)>1):
-                pila_error = resultado.copy()
+            if(resultado != 'valido'):
+                pila_error.append(resultado.copy())
         if(resultado != 'valido'):
             resultado = alIf.ejecutarAlgoritmo(lista.copy())
-            if(resultado != 'valido' and len(resultado)>1):
-                pila_error = resultado.copy()
+            if(resultado != 'valido'):
+                pila_error.append(resultado.copy())
         if(resultado != 'valido'):
             resultados.append([lista,pila_error])
         else:
@@ -217,21 +221,13 @@ def intAlgoritmo(texto:str):
 
     return resultados
 
-print(intAlgoritmo("switch(5>6){}"))
+# print(intAlgoritmo("if(true){ switch(mes){ case 1: if(5>5){} break; case 2: if(5>5){} case 3: if(5>5){}  } }else {}"))
+# print(intAlgoritmo("function correr(){let algo = 5;let algo = 5;}"))
+# print(intAlgoritmo("function prueba1(){let variable1 = 0; let variable1 = 5; switch(variable1){case 1:}}"))
+print(intAlgoritmo("do{ switch(mes){ case 1: if(5>5){} break; case 2: if(5>5){} case 3: if(5>5){}  } }while(true); whila(true){}"))
 
 
 
-
-# lista = ['class', 'R', 'e', 'c', 't', 'a', 'n', 'g', 'u', 'l', 'o', '{','let','aaa','=',"5",'}']
-# algoritmoClase = AlgoritmoNoRecursivo("cssvs/clases.csv","C")
-# algoritmoWhiles = AlgoritmoNoRecursivo("cssvs/clases.csv","C")
-# algoritmo = AlgoritmoNoRecursivo("cssvs/clases.csv","C")
-# algoritmo = AlgoritmoNoRecursivo("cssvs/clases.csv","C")
-# print(algoritmo.ejecutarAlgoritmo(lista))
-# lista = ['class', 'R', 'e', 'c', 't', 'a', 'n', 'g', 'u', 'l', 'o', 'extends', 'A', 'n', 'i', 'm', 'a', 'l', '{}']
-# print(algoritmo.ejecutarAlgoritmo(lista))
-# lista = ['class', 'R', 'e', 'c', 't', 'a', 'n', 'g', 'u', 'l', 'o', '{}']
-# print(algoritmo.ejecutarAlgoritmo(lista))
 
 
  
