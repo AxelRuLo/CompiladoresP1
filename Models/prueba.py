@@ -232,6 +232,38 @@ def llaves_completas(valores:list):
     else:
         return False
 
+def separ_atributos(lista : list):
+    token = ['switch',"do",'if','function','class','let','const','var','while',]
+    indexs = []
+    anterior = 0
+    for valor in lista:
+        index = []
+        for i in range(len(valor)):
+            if  token.__contains__(str(valor[i])):
+                if(str(valor[i]) == "do" ):
+                    anterior = 1
+                    index.append(i)
+                else:
+                    if(str(valor[i]) == "while" and anterior == 1):
+                        anterior=0
+                    else:
+                        index.append(i)
+
+                        
+        indexs.append(index)
+    for i in range(len(indexs)):
+        if(len(indexs[i])>1):
+            aux_valor = lista[i]
+            valor_new = []
+            for j in range(len(indexs[i])):
+                if(j+1<len(indexs[i])):
+                    valor_new.append(aux_valor[indexs[i][j]:indexs[i][j+1]])
+                else:
+                    valor_new.append(aux_valor[indexs[i][j]:len(aux_valor)])
+            del lista[i]
+            lista.extend(valor_new)
+    return lista
+
 def separ_atributos(lista : list,token1:list):
     token = ['switch',"do",'if','function','class','let','const','var','while',]
     indexs = []

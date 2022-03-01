@@ -1,3 +1,4 @@
+from re import I
 from xml.dom import ValidationErr
 from prueba import analizador_lexico,separ_atributos
 from analizadorGeneral import analizar
@@ -174,6 +175,11 @@ def intAlgoritmo(texto:str):
     if(listas == False):
         return False
 
+    listas = separ_atributos(listas.copy())
+
+    for i in range(len(listas)):
+        if(listas[i] == []):
+            listas.pop(i)
     alClase = AlgoritmoNoRecursivo("../cssvs/clases.csv","C")
     alFunciones = AlgoritmoNoRecursivo("../cssvs/funciones.csv","I")
     alWhiles = AlgoritmoNoRecursivo("../cssvs/whiles.csv","P")
@@ -218,7 +224,7 @@ def intAlgoritmo(texto:str):
 # print(intAlgoritmo("if(true){ switch(mes){ case 1: if(5>5){} break; case 2: if(5>5){} case 3: if(5>5){}  } }else {}"))
 # print(intAlgoritmo("function correr(){let algo = 5;let algo = 5;}"))
 # print(intAlgoritmo("function prueba1(){let variable1 = 0; let variable1 = 5; switch(variable1){case 1:}}"))
-print(intAlgoritmo("if(20>10){} function annn(){}"))
+# print(intAlgoritmo("if(20>10){} function annn(){}"))
 
 
 
