@@ -1,6 +1,7 @@
-if (x) {
-  
-}
+
+class Animal{
+
+};
 
 function correr(){
     let algo = 5;

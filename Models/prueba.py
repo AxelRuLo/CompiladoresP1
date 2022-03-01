@@ -33,8 +33,10 @@ def analizador_lexico(text):
             token = aux_token_aux
             valor = aux_valor_aux
         token,valor = buscar_llaves(token.copy(),valor.copy())
+
         if(token != False):
-            token, valor = separ_atributos(valor,token)
+            token, valor = separ_atributos(valor.copy(),token.copy())
+            print(valor)
             if(len(switch_token)>0):
                 token.append(switch_token)
                 valor.append(switch_valor)
@@ -234,7 +236,7 @@ def llaves_completas(valores:list):
     else:
         return False
 
-def separ_atributos(lista : list):
+def separ_atributos_2(lista : list):
     token = ['switch',"do",'if','function','class','let','const','var','while',]
     indexs = []
     anterior = 0

@@ -1,6 +1,6 @@
 from re import I
 from xml.dom import ValidationErr
-from Models.prueba import analizador_lexico, separ_atributos
+from Models.prueba import analizador_lexico, separ_atributos, separ_atributos_2
 import string
 import pandas
 
@@ -174,11 +174,14 @@ def intAlgoritmo(texto:str):
     if(listas == False):
         return False
 
-    listas = separ_atributos(listas.copy())
+    listas = separ_atributos_2(listas.copy())
 
-    for i in range(len(listas)):
-        if(listas[i] == []):
-            listas.pop(i)
+    for i in listas:
+        if(i == []):
+            listas.remove(i)
+
+    print(f'LISTAS: {listas}')
+
     alClase = AlgoritmoNoRecursivo("cssvs/clases.csv","C")
     alFunciones = AlgoritmoNoRecursivo("cssvs/funciones.csv","I")
     alWhiles = AlgoritmoNoRecursivo("cssvs/whiles.csv","P")
