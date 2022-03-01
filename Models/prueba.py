@@ -307,7 +307,7 @@ def separ_atributos(lista : list,token1:list):
             token1[i] = -1
             lista.extend(valor_new)
             token1.extend(token_new)
-    print(lista)
+    # print(lista)
     while(token1.__contains__(-1)):
         token1.remove(-1)
     while(lista.__contains__(-1)):

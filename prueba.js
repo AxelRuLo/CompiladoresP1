@@ -1,11 +1,21 @@
-
-class Animal{
-
-};
-
-function correr(){
-    let algo = 5;
-    if (10<2) {
+if (condition) {
+  if (condition) {
+    if (condition) {
       
+    } else {
+      if (condition) {
+      
+      }
+
+      else if(condishion) {
+
+      }
     }
+  }
+}
+
+function Funciones(){
+    if(document === '_123-') {
+      let variableMamalona = new Objetaso();
+      } 
 }

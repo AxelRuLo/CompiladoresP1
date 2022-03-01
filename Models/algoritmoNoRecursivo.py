@@ -1,7 +1,7 @@
 from re import I
 from xml.dom import ValidationErr
-from prueba import analizador_lexico,separ_atributos,separ_atributos_2
-from analizadorGeneral import analizar
+from Models.prueba import analizador_lexico, separ_atributos_2
+
 import string
 import pandas
 
@@ -177,15 +177,17 @@ def intAlgoritmo(texto:str):
 
     listas = separ_atributos_2(listas.copy())
 
+    print(listas)
+
     for i in listas:
         if(i == []):
             listas.remove(i)
-    alClase = AlgoritmoNoRecursivo("../cssvs/clases.csv","C")
-    alFunciones = AlgoritmoNoRecursivo("../cssvs/funciones.csv","I")
-    alWhiles = AlgoritmoNoRecursivo("../cssvs/whiles.csv","P")
-    alIdentificadores = AlgoritmoNoRecursivo("../cssvs/identificador.csv","P")
-    alSwitch = AlgoritmoNoRecursivo("../cssvs/switch.csv","T")
-    alIf = AlgoritmoNoRecursivo("../cssvs/ifs.csv","T")
+    alClase = AlgoritmoNoRecursivo("cssvs/clases.csv","C")
+    alFunciones = AlgoritmoNoRecursivo("cssvs/funciones.csv","I")
+    alWhiles = AlgoritmoNoRecursivo("cssvs/whiles.csv","P")
+    alIdentificadores = AlgoritmoNoRecursivo("cssvs/identificador.csv","P")
+    alSwitch = AlgoritmoNoRecursivo("cssvs/switch.csv","T")
+    alIf = AlgoritmoNoRecursivo("cssvs/ifs.csv","T")
     resultado = None
     resultados = []
     pila_error = []
