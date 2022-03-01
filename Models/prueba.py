@@ -32,6 +32,7 @@ def analizador_lexico(text):
             valor = aux_valor_aux
         token,valor = buscar_llaves(token.copy(),valor.copy())
         if(token != False):
+            token, valor = separ_atributos(valor,token)
             if(len(switch_token)>0):
                 token.append(switch_token)
                 valor.append(switch_valor)
@@ -51,6 +52,7 @@ def analizador_lexico(text):
                         or (token[j][i]=="CORCHETES" and (token[j].__contains__("let") or token[j].__contains__("var") or token[j].__contains__("const ") or token[j].__contains__("new")))
                         or (token[j][i]=="IPARENTESIS" and (token[j].__contains__("let") or token[j].__contains__("var") or token[j].__contains__("const ") or token[j].__contains__("new")))
                         ):
+                            
                             if(i+1 <len(token[j])):
                                 if(token[j][i+1]=="LLAVES" or token[j][i+1]=="CORCHETES" or token[j][i+1]=="DPARENTESIS"):
                                     frase_examinar.append(str(valor[j][i])+str(valor[j][i+1]))
@@ -64,6 +66,7 @@ def analizador_lexico(text):
                                 frase_examinar.append(caracter)
                     i = i+1
                 frases_examinar.append(frase_examinar)
+            print(frases_examinar)
             return frases_examinar
         else:
             return False
@@ -229,7 +232,7 @@ def llaves_completas(valores:list):
     else:
         return False
 
-def separ_atributos(lista : list):
+def separ_atributos(lista : list,token1:list):
     token = ['switch',"do",'if','function','class','let','const','var','while',]
     indexs = []
     anterior = 0
@@ -251,15 +254,21 @@ def separ_atributos(lista : list):
     for i in range(len(indexs)):
         if(len(indexs[i])>1):
             aux_valor = lista[i]
+            aux_Token = token1[i]
             valor_new = []
+            token_new = []
             for j in range(len(indexs[i])):
                 if(j+1<len(indexs[i])):
                     valor_new.append(aux_valor[indexs[i][j]:indexs[i][j+1]])
+                    token_new.append(aux_Token[indexs[i][j]:indexs[i][j+1]])
                 else:
                     valor_new.append(aux_valor[indexs[i][j]:len(aux_valor)])
+                    token_new.append(aux_Token[indexs[i][j]:len(aux_Token)])
             del lista[i]
+            del token1[i]
             lista.extend(valor_new)
-    return lista
+            token1.extend(token_new)
+    return token1,lista
 
 
     

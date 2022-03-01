@@ -174,8 +174,6 @@ def intAlgoritmo(texto:str):
     if(listas == False):
         return False
 
-    listas = separ_atributos(listas.copy())
-
     alClase = AlgoritmoNoRecursivo("../cssvs/clases.csv","C")
     alFunciones = AlgoritmoNoRecursivo("../cssvs/funciones.csv","I")
     alWhiles = AlgoritmoNoRecursivo("../cssvs/whiles.csv","P")
@@ -220,7 +218,7 @@ def intAlgoritmo(texto:str):
 # print(intAlgoritmo("if(true){ switch(mes){ case 1: if(5>5){} break; case 2: if(5>5){} case 3: if(5>5){}  } }else {}"))
 # print(intAlgoritmo("function correr(){let algo = 5;let algo = 5;}"))
 # print(intAlgoritmo("function prueba1(){let variable1 = 0; let variable1 = 5; switch(variable1){case 1:}}"))
-print(intAlgoritmo("do{ switch(mes){ case 1: if(5>5){} break; case 2: if(5>5){} case 3: if(5>5){}  } }while(true); whila(true){}"))
+print(intAlgoritmo("if(20>10){} function annn(){}"))
 
 
 
