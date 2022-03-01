@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1083</width>
-    <height>782</height>
+    <width>1290</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -255,9 +255,9 @@ font: 63 8pt &quot;Segoe UI Semibold&quot;;</string>
    <widget class="QLabel" name="label_lexicoValido">
     <property name="geometry">
      <rect>
-      <x>800</x>
-      <y>730</y>
-      <width>161</width>
+      <x>1070</x>
+      <y>280</y>
+      <width>201</width>
       <height>21</height>
      </rect>
     </property>
@@ -267,6 +267,86 @@ font: 63 12pt &quot;Segoe UI Semibold&quot;;</string>
     </property>
     <property name="text">
      <string>LÉXICO VÁLIDO</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_sintaticoValido">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>360</y>
+      <width>201</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 170, 0);
+font: 63 12pt &quot;Segoe UI Semibold&quot;;</string>
+    </property>
+    <property name="text">
+     <string>SINTACTICO VÁLIDO</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_tablaSintaxis">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>40</y>
+      <width>201</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 12pt &quot;Segoe UI Semibold&quot;;</string>
+    </property>
+    <property name="text">
+     <string>TABLA DE SINTAXIS</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_lexicoInvalido">
+    <property name="geometry">
+     <rect>
+      <x>1080</x>
+      <y>280</y>
+      <width>201</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);
+font: 63 12pt &quot;Segoe UI Semibold&quot;;</string>
+    </property>
+    <property name="text">
+     <string>LÉXICO INVÁLIDO</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_sintaticoInvalido">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>360</y>
+      <width>211</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);
+font: 63 12pt &quot;Segoe UI Semibold&quot;;</string>
+    </property>
+    <property name="text">
+     <string>SINTACTICO INVÁLIDO</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>

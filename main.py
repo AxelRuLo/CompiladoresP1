@@ -59,6 +59,9 @@ class Window(QMainWindow):
         self.pushButton_erroresLexico.clicked.connect(self.mostrarErroresLexico)
         self.pushButton_erroresLexico.hide()
         self.label_lexicoValido.hide()
+        self.label_lexicoInvalido.hide()
+        self.label_sintaticoValido.hide()
+        self.label_sintaticoInvalido.hide()
 
 
     def openFileNameDialog(self):
@@ -93,30 +96,45 @@ class Window(QMainWindow):
         
         algoritmoNoRecursivo = intAlgoritmo(texto)
 
-        for x in algoritmoNoRecursivo:
-            if(x != 'valido'):
-                indexError = x
-                lexicoValido = False
-                print(f'INDEX ERROR:{indexError}')
-                break
-            else:
-                lexicoValido = True
-        
-        lista = indexError
+        if(algoritmoNoRecursivo != False):
+            for x in algoritmoNoRecursivo:
+                if(x != 'valido'):
+                    indexError = x
+                    lexicoValido = False
+                    print(f'INDEX ERROR:{indexError}')
+                    break
+                else:
+                    lexicoValido = True
+            
+            lista = indexError
 
-        if(texto == ''):
-            self.label_lexicoValido.hide()
-            self.pushButton_erroresLexico.hide()
-        else:
-            if(lexicoValido):
-                self.label_lexicoValido.show()
+            if(texto == ''):
+                self.label_sintaticoValido.hide()
                 self.pushButton_erroresLexico.hide()
-            else:
+                self.label_sintaticoInvalido.hide()
                 self.label_lexicoValido.hide()
-                self.pushButton_erroresLexico.show()
+                self.label_lexicoInvalido.hide()
+            else:
+                if(lexicoValido):
+                    self.label_sintaticoValido.show()
+                    self.pushButton_erroresLexico.hide()
+                    self.label_sintaticoInvalido.hide()
+                else:
+                    self.label_sintaticoValido.hide()
+                    self.label_sintaticoInvalido.show()
+                    self.pushButton_erroresLexico.show()
+        else:
+            self.label_sintaticoInvalido.show()
+
 
         listaTokens,listaValorTokens,listaLineaEncontrado = analizar(texto)
+        if(listaTokens.__contains__("error")):
+            self.label_lexicoInvalido.show()
+        else:
+            if(len(listaTokens) > 0):
+                self.label_lexicoValido.show()
 
+        
         self.llenar_tabla(listaTokens, listaValorTokens, listaLineaEncontrado , llenar)
 
     def limpiarCodigo(self):
@@ -130,7 +148,10 @@ class Window(QMainWindow):
         self.label_alert.hide()
         self.label_file_sucessful.hide()
         self.pushButton_erroresLexico.hide()
+        self.label_sintaticoValido.hide()
+        self.label_sintaticoInvalido.hide()
         self.label_lexicoValido.hide()
+        self.label_lexicoInvalido.hide()
         self.llenar_tabla(new_list, new_list_2, new_list_3, llenar)
 
 
