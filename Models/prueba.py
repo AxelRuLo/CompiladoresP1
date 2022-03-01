@@ -6,7 +6,6 @@ from analizadorGeneral import analizar
 
 def analizador_lexico(text):
     frases_examinar = []
-    # token,valor,linea = analizar("class Rectangulo extends Animal ()")
     token,valor,linea = analizar(text)
     switch_token,switch_valor = [],[]
     if(token.__contains__("error")):
@@ -66,7 +65,6 @@ def analizador_lexico(text):
                                 frase_examinar.append(caracter)
                     i = i+1
                 frases_examinar.append(frase_examinar)
-            print(frases_examinar)
             return frases_examinar
         else:
             return False

@@ -180,52 +180,51 @@ def intAlgoritmo(texto:str):
     for i in listas:
         if(i == []):
             listas.remove(i)
-    print(listas)
-    # alClase = AlgoritmoNoRecursivo("../cssvs/clases.csv","C")
-    # alFunciones = AlgoritmoNoRecursivo("../cssvs/funciones.csv","I")
-    # alWhiles = AlgoritmoNoRecursivo("../cssvs/whiles.csv","P")
-    # alIdentificadores = AlgoritmoNoRecursivo("../cssvs/identificador.csv","P")
-    # alSwitch = AlgoritmoNoRecursivo("../cssvs/switch.csv","T")
-    # alIf = AlgoritmoNoRecursivo("../cssvs/ifs.csv","T")
-    # resultado = None
-    # resultados = []
-    # pila_error = []
-    # for lista in listas:
-    #     pila_error = []
-    #     resultado = alClase.ejecutarAlgoritmo(lista.copy())
-    #     if(resultado != 'valido'):
-    #         pila_error.append(resultado.copy())
-    #     if(resultado != 'valido'):
-    #         resultado = alFunciones.ejecutarAlgoritmo(lista.copy()) 
-    #         if(resultado != 'valido'):
-    #             pila_error.append(resultado.copy())
-    #     if(resultado != 'valido'):
-    #         resultado = alWhiles.ejecutarAlgoritmo(lista.copy()) 
-    #         if(resultado != 'valido'):
-    #             pila_error.append(resultado.copy())
-    #     if(resultado != 'valido'):
-    #         resultado = alIdentificadores.ejecutarAlgoritmo(lista.copy())
-    #         if(resultado != 'valido'):
-    #             pila_error.append(resultado.copy())
-    #     if(resultado != 'valido'):
-    #         resultado = alSwitch.ejecutarAlgoritmo(lista.copy())
-    #         if(resultado != 'valido'):
-    #             pila_error.append(resultado.copy())
-    #     if(resultado != 'valido'):
-    #         resultado = alIf.ejecutarAlgoritmo(lista.copy())
-    #         if(resultado != 'valido'):
-    #             pila_error.append(resultado.copy())
-    #     if(resultado != 'valido'):
-    #         resultados.append([lista,pila_error])
-    #     else:
-    #         resultados.append(resultado)
+    alClase = AlgoritmoNoRecursivo("../cssvs/clases.csv","C")
+    alFunciones = AlgoritmoNoRecursivo("../cssvs/funciones.csv","I")
+    alWhiles = AlgoritmoNoRecursivo("../cssvs/whiles.csv","P")
+    alIdentificadores = AlgoritmoNoRecursivo("../cssvs/identificador.csv","P")
+    alSwitch = AlgoritmoNoRecursivo("../cssvs/switch.csv","T")
+    alIf = AlgoritmoNoRecursivo("../cssvs/ifs.csv","T")
+    resultado = None
+    resultados = []
+    pila_error = []
+    for lista in listas:
+        pila_error = []
+        resultado = alClase.ejecutarAlgoritmo(lista.copy())
+        if(resultado != 'valido'):
+            pila_error.append(resultado.copy())
+        if(resultado != 'valido'):
+            resultado = alFunciones.ejecutarAlgoritmo(lista.copy()) 
+            if(resultado != 'valido'):
+                pila_error.append(resultado.copy())
+        if(resultado != 'valido'):
+            resultado = alWhiles.ejecutarAlgoritmo(lista.copy()) 
+            if(resultado != 'valido'):
+                pila_error.append(resultado.copy())
+        if(resultado != 'valido'):
+            resultado = alIdentificadores.ejecutarAlgoritmo(lista.copy())
+            if(resultado != 'valido'):
+                pila_error.append(resultado.copy())
+        if(resultado != 'valido'):
+            resultado = alSwitch.ejecutarAlgoritmo(lista.copy())
+            if(resultado != 'valido'):
+                pila_error.append(resultado.copy())
+        if(resultado != 'valido'):
+            resultado = alIf.ejecutarAlgoritmo(lista.copy())
+            if(resultado != 'valido'):
+                pila_error.append(resultado.copy())
+        if(resultado != 'valido'):
+            resultados.append([lista,pila_error])
+        else:
+            resultados.append(resultado)
 
-    # return resultados
+    return resultados
 
 # print(intAlgoritmo("if(true){ switch(mes){ case 1: if(5>5){} break; case 2: if(5>5){} case 3: if(5>5){}  } }else {}"))
 # print(intAlgoritmo("function correr(){let algo = 5;let algo = 5;}"))
 # print(intAlgoritmo("function prueba1(){let variable1 = 0; let variable1 = 5; switch(variable1){case 1:}}"))
-print(intAlgoritmo("if(20>10){} function annn(){ let algo = 5; if(10<2){} }"))
+# print(intAlgoritmo("if(20>10){} function annn(){ let algo = 5; if(-1<2){} }"))
 
 
 
