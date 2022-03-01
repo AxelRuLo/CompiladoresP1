@@ -42,7 +42,7 @@ def analizador_lexico(text):
                 frase_examinar = []
                 i = 0
                 while(i < len(token[j])):
-                    if(token[j][i] == str(valor[j][i])):
+                    if(token[j][i] == str(valor[j][i]) or (token[j][i] == "OPERADORES")):
                         frase_examinar.append(str(valor[j][i]))
                     else:
                         if(

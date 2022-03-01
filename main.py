@@ -95,13 +95,14 @@ class Window(QMainWindow):
         texto = self.textEdit_Campo.toPlainText()
         
         algoritmoNoRecursivo = intAlgoritmo(texto)
-
+        # print(f'ALGORITMO: {algoritmoNoRecursivo}')
         if(algoritmoNoRecursivo != False):
+            # print('ENTRE')
             for x in algoritmoNoRecursivo:
                 if(x != 'valido'):
                     indexError = x
                     lexicoValido = False
-                    print(f'INDEX ERROR:{indexError}')
+                    # print(f'INDEX ERROR:{indexError}')
                     break
                 else:
                     lexicoValido = True

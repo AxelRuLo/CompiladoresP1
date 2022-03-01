@@ -173,12 +173,14 @@ def intAlgoritmo(texto:str):
     if(listas == False):
         return False
 
-    alClase = AlgoritmoNoRecursivo("../cssvs/clases.csv","C")
-    alFunciones = AlgoritmoNoRecursivo("../cssvs/funciones.csv","I")
-    alWhiles = AlgoritmoNoRecursivo("../cssvs/whiles.csv","P")
-    alIdentificadores = AlgoritmoNoRecursivo("../cssvs/identificador.csv","P")
-    alSwitch = AlgoritmoNoRecursivo("../cssvs/switch.csv","T")
-    alIf = AlgoritmoNoRecursivo("../cssvs/ifs.csv","T")
+    # print(listas)
+
+    alClase = AlgoritmoNoRecursivo("cssvs/clases.csv","C")
+    alFunciones = AlgoritmoNoRecursivo("cssvs/funciones.csv","I")
+    alWhiles = AlgoritmoNoRecursivo("cssvs/whiles.csv","P")
+    alIdentificadores = AlgoritmoNoRecursivo("cssvs/identificador.csv","P")
+    alSwitch = AlgoritmoNoRecursivo("cssvs/switch.csv","T")
+    alIf = AlgoritmoNoRecursivo("cssvs/ifs.csv","T")
     resultado = None
     resultados = []
     pila_error = []
