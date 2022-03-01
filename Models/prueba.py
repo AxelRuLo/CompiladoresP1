@@ -8,7 +8,6 @@ from Models.analizadorGeneral import analizar
 
 def analizador_lexico(text):
     frases_examinar = []
-    # token,valor,linea = analizar("class Rectangulo extends Animal ()")
     token,valor,linea = analizar(text)
     switch_token,switch_valor = [],[]
     if(token.__contains__("error")):
@@ -70,7 +69,6 @@ def analizador_lexico(text):
                                 frase_examinar.append(caracter)
                     i = i+1
                 frases_examinar.append(frase_examinar)
-            print(frases_examinar)
             return frases_examinar
         else:
             return False
@@ -274,6 +272,7 @@ def separ_atributos(lista : list,token1:list):
     anterior = 0
     for valor in lista:
         index = []
+        print("_______-")
         for i in range(len(valor)):
             if  token.__contains__(str(valor[i])):
                 if(str(valor[i]) == "do" ):
@@ -283,6 +282,7 @@ def separ_atributos(lista : list,token1:list):
                     if(str(valor[i]) == "while" and anterior == 1):
                         anterior=0
                     else:
+                        print(valor[i])
                         index.append(i)
 
                         
@@ -290,20 +290,30 @@ def separ_atributos(lista : list,token1:list):
     for i in range(len(indexs)):
         if(len(indexs[i])>1):
             aux_valor = lista[i]
+            print(f'AUX = {aux_valor}')
             aux_Token = token1[i]
             valor_new = []
             token_new = []
             for j in range(len(indexs[i])):
                 if(j+1<len(indexs[i])):
+                    print(aux_valor[indexs[i][j]:indexs[i][j+1]])
                     valor_new.append(aux_valor[indexs[i][j]:indexs[i][j+1]])
                     token_new.append(aux_Token[indexs[i][j]:indexs[i][j+1]])
                 else:
+                    print(aux_valor[indexs[i][j]:len(aux_valor)])
                     valor_new.append(aux_valor[indexs[i][j]:len(aux_valor)])
                     token_new.append(aux_Token[indexs[i][j]:len(aux_Token)])
-            del lista[i]
-            del token1[i]
+            lista[i] = -1
+            token1[i] = -1
             lista.extend(valor_new)
             token1.extend(token_new)
+    print(lista)
+    while(token1.__contains__(-1)):
+        token1.remove(-1)
+    while(lista.__contains__(-1)):
+        lista.remove(-1)
+  
+            
     return token1,lista
 
 

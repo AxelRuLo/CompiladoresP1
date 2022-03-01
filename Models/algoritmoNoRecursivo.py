@@ -1,6 +1,7 @@
 from re import I
 from xml.dom import ValidationErr
-from Models.prueba import analizador_lexico, separ_atributos, separ_atributos_2
+from prueba import analizador_lexico,separ_atributos,separ_atributos_2
+from analizadorGeneral import analizar
 import string
 import pandas
 
@@ -179,15 +180,12 @@ def intAlgoritmo(texto:str):
     for i in listas:
         if(i == []):
             listas.remove(i)
-
-    print(f'LISTAS: {listas}')
-
-    alClase = AlgoritmoNoRecursivo("cssvs/clases.csv","C")
-    alFunciones = AlgoritmoNoRecursivo("cssvs/funciones.csv","I")
-    alWhiles = AlgoritmoNoRecursivo("cssvs/whiles.csv","P")
-    alIdentificadores = AlgoritmoNoRecursivo("cssvs/identificador.csv","P")
-    alSwitch = AlgoritmoNoRecursivo("cssvs/switch.csv","T")
-    alIf = AlgoritmoNoRecursivo("cssvs/ifs.csv","T")
+    alClase = AlgoritmoNoRecursivo("../cssvs/clases.csv","C")
+    alFunciones = AlgoritmoNoRecursivo("../cssvs/funciones.csv","I")
+    alWhiles = AlgoritmoNoRecursivo("../cssvs/whiles.csv","P")
+    alIdentificadores = AlgoritmoNoRecursivo("../cssvs/identificador.csv","P")
+    alSwitch = AlgoritmoNoRecursivo("../cssvs/switch.csv","T")
+    alIf = AlgoritmoNoRecursivo("../cssvs/ifs.csv","T")
     resultado = None
     resultados = []
     pila_error = []
@@ -226,7 +224,7 @@ def intAlgoritmo(texto:str):
 # print(intAlgoritmo("if(true){ switch(mes){ case 1: if(5>5){} break; case 2: if(5>5){} case 3: if(5>5){}  } }else {}"))
 # print(intAlgoritmo("function correr(){let algo = 5;let algo = 5;}"))
 # print(intAlgoritmo("function prueba1(){let variable1 = 0; let variable1 = 5; switch(variable1){case 1:}}"))
-# print(intAlgoritmo("if(20>10){} function annn(){}"))
+# print(intAlgoritmo("if(20>10){} function annn(){ let algo = 5; if(-1<2){} }"))
 
 
 
