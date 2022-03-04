@@ -292,26 +292,6 @@ font: 63 12pt &quot;Segoe UI Semibold&quot;;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_tablaSintaxis">
-    <property name="geometry">
-     <rect>
-      <x>770</x>
-      <y>40</y>
-      <width>201</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 12pt &quot;Segoe UI Semibold&quot;;</string>
-    </property>
-    <property name="text">
-     <string>TABLA DE SINTAXIS</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_lexicoInvalido">
     <property name="geometry">
      <rect>
