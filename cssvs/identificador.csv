@@ -1,6 +1,6 @@
-regla,a...z,A...Z,0...9,let,var ,const,',"""",espacio,_,.,new,(),{},=,;,[],$
+regla,a...z,A...Z,0...9,let,var,const,',"""",espacio,_,.,new,(),{},=,;,[],$
 P,-1,-1,-1,T L RI SI AS F ,T L RI SI AS F ,T L RI SI AS F ,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
-T,-1,-1,-1,let,var ,const,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+T,-1,-1,-1,let,var,const,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 RI,L RI,L RI,D RI,-1,-1,-1,-1,-1,-1,S RI,-1,-1,vacio,-1,vacio,vacio,-1,vacio
 AS,L RI,L RI,D NE NO,-1,-1,-1,' STR ',""" STR """,-1,-1,-1,new RI (),-1,{},-1,-1,[],-1
 STR,L STR,L STR,D STR,-1,-1,-1,vacio,vacio,espacio STR,ST STR,ST STR,-1,-1,-1,-1,-1,-1,-1

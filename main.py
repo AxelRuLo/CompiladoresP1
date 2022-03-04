@@ -1,8 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QTableWidgetItem
-from PyQt5 import uic, QtCore, QtGui, QtWidgets
 from Models.algoritmoNoRecursivo import intAlgoritmo
-
+from PyQt5 import QtWidgets, uic
 from Models.analizadorGeneral import analizar
 from Models.prueba import llaves_completas 
 

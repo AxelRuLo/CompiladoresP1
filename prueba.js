@@ -15,7 +15,7 @@ if (condition) {
 }
 
 function Funciones(){
-    if(document === '_123-') {
-      let variableMamalona = new Objetaso();
+    if(document === sie) {
+      let variable = new Objetaso();
       } 
 }
