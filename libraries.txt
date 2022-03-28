@@ -1,0 +1,2 @@
+url de instalacion de grahpicz: https://www.codetd.com/en/article/10696816
+pip install pylint

@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QTa
 from Models.algoritmoNoRecursivo import intAlgoritmo
 from PyQt5 import QtWidgets, uic
 from Models.analizadorGeneral import analizar
+from Models.jsToPython import parsingCode
 from Models.prueba import llaves_completas 
 
 text_file = ''
@@ -49,18 +50,20 @@ class Window(QMainWindow):
         super().__init__()
         uic.loadUi('./Views/main.ui', self)
 
-        self.label_alert.hide()
-        self.label_file_sucessful.hide()
+        self.label_alert.setVisible(False)
+        self.label_file_sucessful.setVisible(False)
         self.pushButton_buscarArchivo.clicked.connect(self.openFileNameDialog)
         self.pushButton_cargarArchivo.clicked.connect(self.cargarArchivo)
         self.pushButton_analizarCodigo.clicked.connect(self.ejecutarCodigo)
         self.pushButton_limpiarCodigo.clicked.connect(self.limpiarCodigo)
         self.pushButton_erroresLexico.clicked.connect(self.mostrarErroresLexico)
-        self.pushButton_erroresLexico.hide()
-        self.label_lexicoValido.hide()
-        self.label_lexicoInvalido.hide()
-        self.label_sintaticoValido.hide()
-        self.label_sintaticoInvalido.hide()
+        self.pushButton_verDiagramaUML.clicked.connect(self.mostrarDiagrama)
+        self.pushButton_verDiagramaUML.setVisible(False)
+        self.pushButton_erroresLexico.setVisible(False)
+        self.label_lexicoValido.setVisible(False)
+        self.label_lexicoInvalido.setVisible(False)
+        self.label_sintaticoValido.setVisible(False)
+        self.label_sintaticoInvalido.setVisible(False)
 
 
     def openFileNameDialog(self):
@@ -71,15 +74,15 @@ class Window(QMainWindow):
         if fileName:
             text_file = fileName
             self.textField_selected_file.setText(fileName)
-            self.label_alert.hide()
+            self.label_alert.setVisible(False)
 
 
     def cargarArchivo(self):
         global text_file
         if(len(text_file) == 0):
-            self.label_alert.show()
+            self.label_alert.setVisible(True)
         else:
-            self.label_file_sucessful.show()
+            self.label_file_sucessful.setVisible(True)
             leer_archivo = open(text_file)
             texto = leer_archivo.read()
             self.textEdit_Campo.setText(texto)
@@ -89,9 +92,12 @@ class Window(QMainWindow):
     def ejecutarCodigo(self):
         global lista
         indexError = 0
+        isLexicoValido = False
+        isSintacticoValido = False
         lexicoValido = False
         llenar = True
         texto = self.textEdit_Campo.toPlainText()
+        # print(texto)
         
         algoritmoNoRecursivo = intAlgoritmo(texto)
         # print(f'ALGORITMO: {algoritmoNoRecursivo}')
@@ -109,33 +115,47 @@ class Window(QMainWindow):
             lista = indexError
 
             if(texto == ''):
-                self.label_sintaticoValido.hide()
-                self.pushButton_erroresLexico.hide()
-                self.label_sintaticoInvalido.hide()
-                self.label_lexicoValido.hide()
-                self.label_lexicoInvalido.hide()
+                isSintacticoValido = False
+                isLexicoValido = False
+                self.label_sintaticoValido.setVisible(False)
+                self.pushButton_erroresLexico.setVisible(False)
+                self.label_sintaticoInvalido.setVisible(False)
+                self.label_lexicoValido.setVisible(False)
+                self.label_lexicoInvalido.setVisible(False)
+                self.pushButton_verDiagramaUML.setVisible(False)
             else:
                 if(lexicoValido):
-                    self.label_sintaticoValido.show()
-                    self.pushButton_erroresLexico.hide()
-                    self.label_sintaticoInvalido.hide()
+                    isSintacticoValido = True
+                    self.label_sintaticoValido.setVisible(True)
+                    self.pushButton_erroresLexico.setVisible(False)
+                    self.label_sintaticoInvalido.setVisible(False)
                 else:
-                    self.label_sintaticoValido.hide()
-                    self.label_sintaticoInvalido.show()
-                    self.pushButton_erroresLexico.show()
+                    isSintacticoValido = False
+                    self.label_sintaticoValido.setVisible(False)
+                    self.label_sintaticoInvalido.setVisible(True)
+                    self.pushButton_erroresLexico.setVisible(True)
+                    self.pushButton_verDiagramaUML.setVisible(False)
+                    self.pushButton_verDiagramaUML.setVisible(False)
         else:
-            self.label_sintaticoInvalido.show()
+            self.label_sintaticoInvalido.setVisible(True)
+            self.pushButton_verDiagramaUML.setVisible(False)
 
 
         listaTokens,listaValorTokens,listaLineaEncontrado = analizar(texto)
         if(listaTokens.__contains__("error")):
-            self.label_lexicoInvalido.show()
+            self.label_lexicoInvalido.setVisible(True)
+            self.pushButton_verDiagramaUML.setVisible(False)
+            isLexicoValido = False
         else:
             if(len(listaTokens) > 0):
-                self.label_lexicoValido.show()
-
+                self.label_lexicoValido.setVisible(True)
+                isLexicoValido = True
         
         self.llenar_tabla(listaTokens, listaValorTokens, listaLineaEncontrado , llenar)
+
+        if(isLexicoValido and isSintacticoValido):
+            print('VALIDO LOS 2')
+            self.pushButton_verDiagramaUML.setVisible(True)
 
     def limpiarCodigo(self):
         new_list = []
@@ -145,13 +165,14 @@ class Window(QMainWindow):
         llenar = False 
         self.textEdit_Campo.clear()
         self.textField_selected_file.clear()
-        self.label_alert.hide()
-        self.label_file_sucessful.hide()
-        self.pushButton_erroresLexico.hide()
-        self.label_sintaticoValido.hide()
-        self.label_sintaticoInvalido.hide()
-        self.label_lexicoValido.hide()
-        self.label_lexicoInvalido.hide()
+        self.label_alert.setVisible(False)
+        self.label_file_sucessful.setVisible(False)
+        self.pushButton_erroresLexico.setVisible(False)
+        self.label_sintaticoValido.setVisible(False)
+        self.label_sintaticoInvalido.setVisible(False)
+        self.label_lexicoValido.setVisible(False)
+        self.label_lexicoInvalido.setVisible(False)
+        self.pushButton_verDiagramaUML.setVisible(False)
         self.llenar_tabla(new_list, new_list_2, new_list_3, llenar)
 
 
@@ -175,13 +196,19 @@ class Window(QMainWindow):
         listError = lista
         w = SecondWindow(listError)
         self.demo = w
-        self.demo.show()
+        self.demo.setVisible(True)
+
     
+    def mostrarDiagrama(self):
+        texto = self.textEdit_Campo.toPlainText()
+        # codigo = parsingCode(texto)
+    
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setStyle(QtWidgets.QStyleFactory.create('Fusion'))
     demo = Window()
-    demo.show()
+    demo.setVisible(True)
 
     try: 
         sys.exit(app.exec_())

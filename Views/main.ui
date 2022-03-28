@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(39, 39, 39);</string>
+   <string notr="true">background-color: rgb(69, 72, 81);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -32,8 +32,7 @@
     <property name="styleSheet">
      <string notr="true">border: 2px solid;
 color: rgb(255, 255, 255);
-border-radius: 15px;
-border-color: rgb(255, 255, 0);</string>
+border-radius: 15px;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_analizarCodigo">
@@ -81,7 +80,7 @@ font: 63 8pt &quot;Segoe UI Semibold&quot;;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
+     <string notr="true">color: rgb(0, 0, 0);
 font: 63 8pt &quot;Segoe UI Semibold&quot;;</string>
     </property>
     <property name="text">
@@ -197,8 +196,7 @@ font: 63 8pt &quot;Segoe UI Semibold&quot;;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-color: rgb(255, 255, 255);</string>
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <column>
      <property name="text">
@@ -227,7 +225,7 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 81 20pt &quot;Rockwell Extra Bold&quot;;
-color: rgb(247, 224, 24);</string>
+color:  rgb(252, 239, 249);</string>
     </property>
     <property name="text">
      <string>JAVASCRIPT</string>
@@ -244,7 +242,7 @@ color: rgb(247, 224, 24);</string>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(222, 0, 0);
-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
 border-radius: 15px;
 font: 63 8pt &quot;Segoe UI Semibold&quot;;</string>
     </property>
@@ -330,6 +328,25 @@ font: 63 12pt &quot;Segoe UI Semibold&quot;;</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_verDiagramaUML">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>480</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(125, 188, 0);
+color: rgb(0, 0, 0);
+border-radius: 15px;
+font: 63 8pt &quot;Segoe UI Semibold&quot;;</string>
+    </property>
+    <property name="text">
+     <string>VER DIAGRAMA UML</string>
     </property>
    </widget>
   </widget>
