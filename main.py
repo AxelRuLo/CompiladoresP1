@@ -72,7 +72,7 @@ class Window(QMainWindow):
         global text_file
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;Javascript Files (*.js)", options=options)
+        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "",";Javascript Files (*.js)", options=options)
         if fileName:
             text_file = fileName
             self.textField_selected_file.setText(fileName)
