@@ -13,7 +13,7 @@ class Rectangulo extends Figura{
   constructor () {
       this.alto = 10; 
       this.ancho = 10;
-      this.carro = Carro();
+      this.carro = new Carro();
   }
 
   area(){

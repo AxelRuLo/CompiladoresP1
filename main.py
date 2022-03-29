@@ -162,6 +162,7 @@ class Window(QMainWindow):
                 self.label_claseNoEncontrada.setVisible(False)
             else:
                 self.label_claseNoEncontrada.setVisible(True)
+                self.pushButton_verDiagramaUML.setVisible(False)
                 print('CLASE NO ENCONTRADA')
 
     def limpiarCodigo(self):
@@ -180,6 +181,7 @@ class Window(QMainWindow):
         self.label_lexicoValido.setVisible(False)
         self.label_lexicoInvalido.setVisible(False)
         self.pushButton_verDiagramaUML.setVisible(False)
+        self.label_claseNoEncontrada.setVisible(False)
         self.llenar_tabla(new_list, new_list_2, new_list_3, llenar)
 
 

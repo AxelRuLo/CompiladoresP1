@@ -1,42 +1,31 @@
 
 
-class Figura:
+class Rectangulo:
 	def __init__(self,):
 		
 		self.alto=5
-		self.ancho=5
-
-	def area(self,):
-		pass 
-
-
-class Rectangulo(Figura):
-	def __init__(self,):
-		
-		self.alto=10
-		self.ancho=10
+		self.ancho=6
 		self.carro=Carro(self,)
 
-	def area(self,):
+	def calcArea(self,):
 		pass 
 
 
-class Cuadrado(Figura):
+class Artefactos:
 	def __init__(self,):
 		
-		self.alto=15
-		self.ancho=15
+		self.artefacto1=1
+		self.artefacto2=2
 
-	def area(self,):
+	def apagar(self,):
 		pass 
 
 
-class Circulo(Figura):
+class Carro(Artefactos):
 	def __init__(self,):
 		
-		self.alto=alto
-		self.ancho=ancho
-		self.cuadrado=Cuadrado(self,)
+		self.alto=1
+		self.ancho=2
 
-	def area(self,):
+	def encender(self,):
 		pass 

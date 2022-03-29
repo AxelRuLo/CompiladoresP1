@@ -9,7 +9,6 @@ while (true) {
     else {
         let b = 'Caballo';
         do {
-            var xs = [];
         } while (false);
     }
 
