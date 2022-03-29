@@ -201,7 +201,7 @@ class Window(QMainWindow):
     
     def mostrarDiagrama(self):
         texto = self.textEdit_Campo.toPlainText()
-        # codigo = parsingCode(texto)
+        codigo = parsingCode(texto)
     
 
 if __name__ == '__main__':

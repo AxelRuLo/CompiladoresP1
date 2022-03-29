@@ -17,7 +17,7 @@ def createFile(code:str):
 def parsingCode(code:str):
     #searching javascript function,variables and classes with regex
     rgx =  re.compile('\s*[A-Za-z_][A-Za-z_0-9]*?\s*\(.*?\)\s*{\s*.*?\s*}\s*')
-    rgx_var = re.compile('{\s*[A-Za-z][A-Za-z_0-9]*?\s*.*\s*}')
+    rgx_var = re.compile('\s*{\s*[A-Za-z]*[A-Za-z_0-9]*\s*.*\s*}\s*')
     rgx_class = re.compile('\s*class\s*[A-Za-z_][A-Za-z_0-9]*\s*')
 
     #Replace elements
@@ -48,13 +48,23 @@ def parsingCode(code:str):
                 value = evaluateVar[0].replace('self','\n\t\tself').replace('new', '')   
                 function = function.replace(evaluateVar[0], value)
 
+            print(f"EVALUATE VAR {evaluateVar}")
+            if(len(evaluateVar) == 0):
+                print('ENTRA A ESTE IF DE LEN')
+                function = function.replace('', '{pass}')
+
+
             if(function.__contains__('def') and not function.__contains__('__init__')):
                 if(function.__contains__('new')):
+                    print('entra a new')
                     evaluateVar = re.findall(rgx_var, function)
-                    function = function.replace(evaluateVar[0], '{pass }')
+                    if(len(evaluateVar)>0):
+                        function = function.replace(evaluateVar[0], '{pass }')
+                    
                 else:
                     evaluateVar = re.findall(rgx_var, function)
-                    function = function.replace(evaluateVar[0], '{pass }')
+                    if(len(evaluateVar)>0):
+                        function = function.replace(evaluateVar[0], '{pass }')
                 
             function = function.replace('(', '(self,')
             function = function.replace('{', '{\n\t\t')
@@ -83,40 +93,22 @@ def parsingCode(code:str):
 
 
 # code = """
-#           class Rectangulo{
-#     constructor (alto, ancho) {
-#       this.alto = alto; 
-#       this.ancho = ancho;
-#       this.carro = Carro();
-#     }
+# class Animal{
 
-#     _12calcArea_ () {
-#       return this.alto * this.ancho;
-#     }
-# }
-
-#           class Artefactos{
-#   constructor(artefacto1, artefacto2){
-#         this.artefacto1 = artefacto1
-#           this.artefacto2 = artefacto2
+#   constructor(){
+#     this.nombre = "Nombre"
+#     this.nombre = []
+#     this.nombre = 0
+#     this.nombre = 2
+#   }
+  
+#   comer(){
+#     let comida = 1;
 #   }
 
-#         apagar(){
-#     console.log('apagado')
+#   dormir(){ 
 #   }
 # }
-
-
-#         class Carro extends Artefactos{
-#         constructor (alto, ancho) {
-#           this.alto = alto; 
-#         this.ancho = ancho;
-#   }
-
-#   encender () {
-#           console.log('encender');
-#     }
-#   }
 # """
 
 # parsingCode(code)

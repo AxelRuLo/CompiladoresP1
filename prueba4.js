@@ -1,32 +1,45 @@
-class Rectangulo{
-    constructor (alto, ancho) {
-        this.alto = alto; 
-        this.ancho = ancho;
-        this.carro = Carro();
-    }
-
-    _12calcArea_ () {
-      return this.alto * this.ancho;
-    }
- }
-
-class Artefactos{
-    constructor(artefacto1, artefacto2){
-      this.artefacto1 = artefacto1
-      this.artefacto2 = artefacto2
-    }        
-  
-    apagar(){
-      console.log('apagado')
-    }
-}        
-
-class Carro extends Artefactos{
-    constructor (alto, ancho) {
-        this.alto = alto; 
-        this.ancho = ancho;
-    }  
-    encender () {
-        console.log('encender');
-    }
+class Figura {
+  constructor () {
+      this.alto = 5; 
+      this.ancho = 5;
   }
+
+  area(){
+
+  }
+}
+
+class Rectangulo extends Figura{
+  constructor () {
+      this.alto = 10; 
+      this.ancho = 10;
+      this.carro =new Cuadrado();
+  }
+
+  area(){
+
+  }
+}
+
+class Cuadrado extends Figura{
+  constructor(){
+    this.alto = 15; 
+      this.ancho = 15;
+  }
+
+  area(){
+
+  }
+}
+
+class Circulo extends Figura{
+constructor(){
+  this.alto = alto; 
+    this.ancho = ancho;
+    this.cuadrado = new Cuadrado()
+}
+
+area(){
+
+}
+}

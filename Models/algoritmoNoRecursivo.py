@@ -179,6 +179,8 @@ def intAlgoritmo(texto:str):
         return False
 
     listas = separ_atributos_2(listas.copy())
+    listas = separ_atributos_2(listas.copy())
+    listas = separ_atributos_2(listas.copy())
 
     print(listas)
 
