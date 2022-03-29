@@ -177,14 +177,9 @@ def intAlgoritmo(texto:str):
     listas = analizador_lexico(texto)
     if(listas == False):
         return False
-    print("esta es la lista :\n",listas)
+   
 
     listas = separ_atributos_2(listas.copy())
-    # listas = separ_atributos_2(listas.copy())
-    # listas = separ_atributos_2(listas.copy())
-
-
-    print("esta es la lista :\n",listas)
 
     for i in listas:
         if(i == []):
