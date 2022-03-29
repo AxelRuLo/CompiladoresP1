@@ -1,5 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFileDialog, QTableWidgetItem
+from Controller.diagramViewController import DiagramViewController
 from Models.algoritmoNoRecursivo import intAlgoritmo
 from PyQt5 import QtWidgets, uic
 from Models.analizadorGeneral import analizar
@@ -201,7 +202,10 @@ class Window(QMainWindow):
     
     def mostrarDiagrama(self):
         texto = self.textEdit_Campo.toPlainText()
-        codigo = parsingCode(texto)
+        parsingCode(texto)
+        view = DiagramViewController()
+        self.demo = view
+        self.demo.show()
     
 
 if __name__ == '__main__':

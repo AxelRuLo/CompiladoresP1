@@ -1,25 +1,15 @@
 
 
-class Rectangulo:
+class Animal:
 	def __init__(self,):
 		
-		self.alto=1
-		self.ancho=2
-		self.carro=Carro(self,)
+		self.nombre="Nombre"
+		self.nombre=[]
+		self.nombre=0
+		self.nombre=2
 
-	def calcArea(self,):
+	def comer(self,):
 		pass 
 
-
-class Artefactos:
-	def __init__(self,):
-		
-		self.artefacto1=1
-		self.artefacto2=2
-
-
-class Carro(Artefactos):
-	def __init__(self,):
-		
-		self.alto=3
-		self.ancho=1
+	def dormir(self,):
+		pass 
