@@ -1,19 +1,10 @@
 
 
-class Rectangulo:
-	def __init__(self,):
-		
-		self.alto=5
-		self.ancho=6
-		self.carro=Carro(self,)
-
-	def calcArea(self,):
-		pass 
-
-
 class Artefactos:
 	def __init__(self,):
 		
+		self.artefacto1=1
+		self.artefacto2=2
 
 	def apagar(self,):
 		pass 
