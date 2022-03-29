@@ -1,15 +1,42 @@
 
 
-class Animal:
+class Figura:
 	def __init__(self,):
 		
-		self.nombre="Nombre"
-		self.nombre=[]
-		self.nombre=0
-		self.nombre=2
+		self.alto=5
+		self.ancho=5
 
-	def comer(self,):
+	def area(self,):
 		pass 
 
-	def dormir(self,):
+
+class Rectangulo(Figura):
+	def __init__(self,):
+		
+		self.alto=10
+		self.ancho=10
+		self.carro=Carro(self,)
+
+	def area(self,):
+		pass 
+
+
+class Cuadrado(Figura):
+	def __init__(self,):
+		
+		self.alto=15
+		self.ancho=15
+
+	def area(self,):
+		pass 
+
+
+class Circulo(Figura):
+	def __init__(self,):
+		
+		self.alto=alto
+		self.ancho=ancho
+		self.cuadrado=Cuadrado(self,)
+
+	def area(self,):
 		pass 

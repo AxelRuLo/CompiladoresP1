@@ -244,30 +244,31 @@ def llaves_completas(valores:list):
         return False
 
 def separ_atributos_2(lista : list):
-    token = ['switch',"do",'if','function','class','let','const','var','while',"constructor","this"]
+    token = ['switch',"do",'if','function','class','let','const','var','while',"constructor","this."]
     indexs = []
     anterior = 0
     for valor in lista:
-        index = []
-        for i in range(len(valor)):
-            if  token.__contains__(str(valor[i])):
-                if(str(valor[i]) == "do" ):
-                    anterior = 1
-                    index.append(i)
-                else:
-                    if(str(valor[i]) == "while" and anterior == 1):
-                        anterior=0
-                    else:
+        if(valor[0]!= "this."):
+            index = []
+            for i in range(len(valor)):
+                if  token.__contains__(str(valor[i])):
+                    if(str(valor[i]) == "do" ):
+                        anterior = 1
                         index.append(i)
-            else:
-                if(i<len(valor)):
-                    if(str(valor[i]) == "{}" ):
-                        
-                        if(i+1<len(valor)):
-                            index.append(i+1);
+                    else:
+                        if(str(valor[i]) == "while" and anterior == 1):
+                            anterior=0
+                        else:
+                            index.append(i)
+                else:
+                    if(i<len(valor)):
+                        if(str(valor[i]) == "{}" ):
+                            
+                            if(i+1<len(valor)):
+                                index.append(i+1);
 
-                        
-        indexs.append(index)
+                            
+            indexs.append(index)
     for i in range(len(indexs)):
         if(len(indexs[i])>1):
             aux_valor = lista[i]
@@ -277,8 +278,13 @@ def separ_atributos_2(lista : list):
                     valor_new.append(aux_valor[indexs[i][j]:indexs[i][j+1]])
                 else:
                     valor_new.append(aux_valor[indexs[i][j]:len(aux_valor)])
-            del lista[i]
+            # del lista[i]
             lista.extend(valor_new)
+    for i in reversed(range(len(indexs))):
+        if(len(indexs[i])>1):
+            print(lista[i])
+            del lista[i]
+    print("lista antes del return", lista);
     return lista
 
 def separ_atributos(lista : list,token1:list):
