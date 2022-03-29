@@ -95,4 +95,4 @@ def analizar(cadena):
     return listaTokens,listaValorTokens,listaLineaEncontrado
 
 
-print(analizar("this.altura"))
+# print(analizar("this.altura"))

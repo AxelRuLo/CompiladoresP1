@@ -158,11 +158,16 @@ class Window(QMainWindow):
         if(isLexicoValido and isSintacticoValido):
             texto = self.textEdit_Campo.toPlainText()
             if(texto.__contains__('class')):
-                self.pushButton_verDiagramaUML.setVisible(True)
-                self.label_claseNoEncontrada.setVisible(False)
+                self.labe_notificacion.setText("")
+                token,valor, indice = analizar(texto)
+                if(self.comprobar(token.copy(),valor.copy())):
+                    self.pushButton_verDiagramaUML.setVisible(True)
+                    self.label_claseNoEncontrada.setVisible(False)
+                else:
+                    self.pushButton_verDiagramaUML.setVisible(False)
+                    
             else:
                 self.label_claseNoEncontrada.setVisible(True)
-                self.pushButton_verDiagramaUML.setVisible(False)
                 print('CLASE NO ENCONTRADA')
 
     def limpiarCodigo(self):
@@ -181,7 +186,6 @@ class Window(QMainWindow):
         self.label_lexicoValido.setVisible(False)
         self.label_lexicoInvalido.setVisible(False)
         self.pushButton_verDiagramaUML.setVisible(False)
-        self.label_claseNoEncontrada.setVisible(False)
         self.llenar_tabla(new_list, new_list_2, new_list_3, llenar)
 
 
@@ -214,7 +218,35 @@ class Window(QMainWindow):
         view = DiagramViewController()
         self.demo = view
         self.demo.show()
-    
+        
+    def comprobar(self,token,valor):
+        nombreClases = []
+        nombreExtends = []
+        nombreObjeto = []
+        
+        
+        for i in range(len(token)):
+            if token[i] == 'class':
+                nombreClases.append(valor[i+1]);
+            if token[i] == 'extends':
+                nombreExtends.append(valor[i+1]);
+            if token[i] == 'new':
+                nombreObjeto.append(valor[i+1]);
+        for ext in nombreExtends:
+            contiene = nombreClases.__contains__(ext)
+            if(contiene == False):
+                print('no existe la clase que quiere heredar ')
+                self.labe_notificacion.setText("No existe la clase que quiere heredar")
+                return False
+        for obj in nombreObjeto:
+            contiene = nombreClases.__contains__(obj)
+            if(contiene == False):
+                print('no existe la clase que quiere instanciar ')
+                self.labe_notificacion.setText("No existe la clase que quiere instanciar")
+                return False
+        return True
+        
+                
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

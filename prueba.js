@@ -1,13 +1,9 @@
-class Figura {
+
   constructor () {
       this.alto = 5; 
       this.ancho = 5;
   }
 
-  area(){
-
-  }
-}
 
 class Rectangulo extends Figura{
   constructor () {

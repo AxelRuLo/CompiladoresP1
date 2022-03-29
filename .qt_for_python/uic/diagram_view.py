@@ -14,15 +14,15 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(770, 554)
+        Form.resize(939, 683)
         Form.setStyleSheet("background-color: rgb(69, 72, 81);")
         self.label = QtWidgets.QLabel(Form)
-        self.label.setGeometry(QtCore.QRect(340, 30, 131, 21))
+        self.label.setGeometry(QtCore.QRect(430, 20, 131, 21))
         self.label.setStyleSheet("color: rgb(255, 255, 255);\n"
 "font: 75 10pt \"MS Shell Dlg 2\";")
         self.label.setObjectName("label")
         self.verticalLayoutWidget = QtWidgets.QWidget(Form)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(70, 80, 651, 431))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(70, 60, 831, 601))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout_diagram = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout_diagram.setContentsMargins(0, 0, 0, 0)

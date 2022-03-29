@@ -14,8 +14,6 @@ class Rectangulo:
 class Artefactos:
 	def __init__(self,):
 		
-		self.artefacto1=1
-		self.artefacto2=2
 
 	def apagar(self,):
 		pass 

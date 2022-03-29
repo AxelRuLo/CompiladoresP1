@@ -141,6 +141,12 @@ class Ui_MainWindow(object):
 "font: 63 8pt \"Segoe UI Semibold\";")
         self.label_claseNoEncontrada.setAlignment(QtCore.Qt.AlignCenter)
         self.label_claseNoEncontrada.setObjectName("label_claseNoEncontrada")
+        self.labe_notificacion = QtWidgets.QLabel(self.centralwidget)
+        self.labe_notificacion.setGeometry(QtCore.QRect(880, 580, 271, 51))
+        self.labe_notificacion.setStyleSheet("color: rgb(255, 0, 0);\n"
+"font: 75 12pt \"MS Shell Dlg 2\";")
+        self.labe_notificacion.setText("")
+        self.labe_notificacion.setObjectName("labe_notificacion")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
