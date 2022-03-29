@@ -3,7 +3,7 @@ import re
 
 
 tokens = ["ID","COMMENT","NUMEROSFLOTANTES","DOSPUNTOS", "NUMEROS", "IGUAL", "STRINGS","STRINGD", "LLAVES","IPARENTESIS","DPARENTESIS","NEW","PUNTOCOMA","CORCHETES","OBJETOPROPIEDAD","OPERADORES","COMA","OPERADORESARITMETICOS"]
-reservadas = {'new':'new','switch':'switch','break':'break','case':'case', 'default': 'default',"do":"do",'if':'if','else':'else', 'elseif': 'elseif','function':'function','class':'class','extends':'extends','let':'let','const':'const','var':'var','while':'while',"true":"true","false":"false"}
+reservadas = {'this':'this','constructor':'constructor','new':'new','switch':'switch','break':'break','case':'case', 'default': 'default',"do":"do",'if':'if','else':'else', 'elseif': 'elseif','function':'function','class':'class','extends':'extends','let':'let','const':'const','var':'var','while':'while',"true":"true","false":"false"}
 tokens = tokens + list(reservadas.values())
 
 t_ignore = ' \t\n'
@@ -19,8 +19,6 @@ t_COMA = r'\,'
 t_OPERADORESARITMETICOS = r'[+]|-'
 
 def _analizadorVariable():
-
-
 
     def t_ID(t):
         r'[a-zA-Z_][a-zA-Z0-9_]*'
@@ -97,3 +95,4 @@ def analizar(cadena):
     return listaTokens,listaValorTokens,listaLineaEncontrado
 
 
+print(analizar("this.altura"))

@@ -1,7 +1,6 @@
 
 
 from operator import le
-
 from Models.analizadorGeneral import analizar
 
 
@@ -13,6 +12,7 @@ def analizador_lexico(text):
     if(token.__contains__("error")):
         return False
     else:
+        token,valor = buscar_this(token.copy(),valor.copy())
         aux_token_aux = token.copy()
         aux_valor_aux = valor.copy()
         token,valor = buscar_switch(token.copy(),valor.copy())
@@ -35,7 +35,6 @@ def analizador_lexico(text):
 
         if(token != False):
             token, valor = separ_atributos(valor.copy(),token.copy())
-            print(valor)
             if(len(switch_token)>0):
                 token.append(switch_token)
                 valor.append(switch_valor)
@@ -43,16 +42,17 @@ def analizador_lexico(text):
                 frase_examinar = []
                 i = 0
                 while(i < len(token[j])):
-                    if(token[j][i] == str(valor[j][i]) or (token[j][i] == "OPERADORES")):
+                    if(token[j][i] == str(valor[j][i]) or (token[j][i] == "OPERADORES") or (token[j][i] == "this")):
                         frase_examinar.append(str(valor[j][i]))
                     else:
                         if(
                             (
                                 (token[j][i]=="LLAVES" and token[j].__contains__("class")) 
-                                or (token[j][i]=="LLAVES" and token[j].__contains__("function")) 
+                                or (token[j][i]=="LLAVES" and (token[j].__contains__("function") or token[j].__contains__("constructor"))) 
                                 or (token[j][i]=="LLAVES" and (token[j].__contains__("let") or token[j].__contains__("var") or token[j].__contains__("const ") or token[j].__contains__("new"))) 
+                                or (token[j][i]=="LLAVES" and not (token[j].__contains__("while") or token[j].__contains__("switch") or token[j].__contains__("if")))
                                 )
-                        or (token[j][i]=="CORCHETES" and (token[j].__contains__("let") or token[j].__contains__("var") or token[j].__contains__("const ") or token[j].__contains__("new")))
+                        or (token[j][i]=="CORCHETES" and (token[j].__contains__("let") or token[j].__contains__("var") or token[j].__contains__("const ") or token[j].__contains__("new") or token[j].__contains__("this")))
                         or (token[j][i]=="IPARENTESIS" and (token[j].__contains__("let") or token[j].__contains__("var") or token[j].__contains__("const ") or token[j].__contains__("new")))
                         ):
                             
@@ -72,6 +72,15 @@ def analizador_lexico(text):
             return frases_examinar
         else:
             return False
+        
+def buscar_this(token:list,valores:list):
+    token_aux = token
+    for i in range(len(token_aux)):
+        if(token_aux[i]=="this"):
+            if(token_aux[i+1] == "OBJETOPROPIEDAD"):
+                valores[i] = "this."
+                valores[i+1] = valores[i+1][1:len(valores[i+1])]
+    return token,valores
 
 def buscar_llaves(token:list,valores:list):
     valor = valores.copy()
@@ -235,7 +244,7 @@ def llaves_completas(valores:list):
         return False
 
 def separ_atributos_2(lista : list):
-    token = ['switch',"do",'if','function','class','let','const','var','while',]
+    token = ['switch',"do",'if','function','class','let','const','var','while',"constructor","this"]
     indexs = []
     anterior = 0
     for valor in lista:
@@ -250,6 +259,12 @@ def separ_atributos_2(lista : list):
                         anterior=0
                     else:
                         index.append(i)
+            else:
+                if(i<len(valor)):
+                    if(str(valor[i]) == "{}" ):
+                        
+                        if(i+1<len(valor)):
+                            index.append(i+1);
 
                         
         indexs.append(index)
@@ -267,12 +282,11 @@ def separ_atributos_2(lista : list):
     return lista
 
 def separ_atributos(lista : list,token1:list):
-    token = ['switch',"do",'if','function','class','let','const','var','while',]
+    token = ['switch',"do",'if','function','class','let','const','var','while',"constructor","this."]
     indexs = []
     anterior = 0
     for valor in lista:
         index = []
-        print("_______-")
         for i in range(len(valor)):
             if  token.__contains__(str(valor[i])):
                 if(str(valor[i]) == "do" ):
@@ -282,25 +296,20 @@ def separ_atributos(lista : list,token1:list):
                     if(str(valor[i]) == "while" and anterior == 1):
                         anterior=0
                     else:
-                        print(valor[i])
                         index.append(i)
-
                         
         indexs.append(index)
     for i in range(len(indexs)):
         if(len(indexs[i])>1):
             aux_valor = lista[i]
-            print(f'AUX = {aux_valor}')
             aux_Token = token1[i]
             valor_new = []
             token_new = []
             for j in range(len(indexs[i])):
                 if(j+1<len(indexs[i])):
-                    print(aux_valor[indexs[i][j]:indexs[i][j+1]])
                     valor_new.append(aux_valor[indexs[i][j]:indexs[i][j+1]])
                     token_new.append(aux_Token[indexs[i][j]:indexs[i][j+1]])
                 else:
-                    print(aux_valor[indexs[i][j]:len(aux_valor)])
                     valor_new.append(aux_valor[indexs[i][j]:len(aux_valor)])
                     token_new.append(aux_Token[indexs[i][j]:len(aux_Token)])
             lista[i] = -1

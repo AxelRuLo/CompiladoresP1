@@ -109,6 +109,9 @@ class AlgoritmoNoRecursivo:
                         or reglaNueva == "else if"
                         or reglaNueva == "extends"
                         or reglaNueva == "class"
+                        or reglaNueva == "function"
+                        or reglaNueva == "constructor"
+                        
                     ):
                         self.pila.pop()
                         index = index + 1

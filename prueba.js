@@ -1,21 +1,16 @@
-if (condition) {
-  if (condition) {
-    if (condition) {
-      
-    } else {
-      if (condition) {
-      
-      }
+class Animal{
 
-      else if(condishion) {
+  constructor(){
+    this.nombre = "Nombre"
+    this.nombre = []
+    this.nombre = 0
+    this.nombre = {}
+    this.nombre = new Object()
 
-      }
-    }
   }
-}
+  
+  comer(){
+  }
 
-function Funciones(){
-    if(document === sie) {
-      let variable = new Objetaso();
-      } 
+
 }
