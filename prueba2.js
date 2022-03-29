@@ -1,7 +1,3 @@
-    class Animal{
-        
-    }
-        
     function comprobar (){
     
     let bandera = 12;

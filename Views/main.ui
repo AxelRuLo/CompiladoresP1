@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1144</width>
+    <width>1155</width>
     <height>646</height>
    </rect>
   </property>
@@ -333,8 +333,8 @@ font: 63 12pt &quot;Segoe UI Semibold&quot;;</string>
    <widget class="QPushButton" name="pushButton_verDiagramaUML">
     <property name="geometry">
      <rect>
-      <x>1100</x>
-      <y>480</y>
+      <x>960</x>
+      <y>390</y>
       <width>161</width>
       <height>41</height>
      </rect>
@@ -347,6 +347,35 @@ font: 63 8pt &quot;Segoe UI Semibold&quot;;</string>
     </property>
     <property name="text">
      <string>VER DIAGRAMA UML</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_claseNoEncontrada">
+    <property name="geometry">
+     <rect>
+      <x>940</x>
+      <y>460</y>
+      <width>201</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI Semibold</family>
+      <pointsize>8</pointsize>
+      <weight>7</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);
+font: 63 8pt &quot;Segoe UI Semibold&quot;;</string>
+    </property>
+    <property name="text">
+     <string>NO HAY CLASES ENCONTRADAS</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>

@@ -59,6 +59,7 @@ class Window(QMainWindow):
         self.pushButton_limpiarCodigo.clicked.connect(self.limpiarCodigo)
         self.pushButton_erroresLexico.clicked.connect(self.mostrarErroresLexico)
         self.pushButton_verDiagramaUML.clicked.connect(self.mostrarDiagrama)
+        self.label_claseNoEncontrada.setVisible(False)
         self.pushButton_verDiagramaUML.setVisible(False)
         self.pushButton_erroresLexico.setVisible(False)
         self.label_lexicoValido.setVisible(False)
@@ -155,8 +156,13 @@ class Window(QMainWindow):
         self.llenar_tabla(listaTokens, listaValorTokens, listaLineaEncontrado , llenar)
 
         if(isLexicoValido and isSintacticoValido):
-            print('VALIDO LOS 2')
-            self.pushButton_verDiagramaUML.setVisible(True)
+            texto = self.textEdit_Campo.toPlainText()
+            if(texto.__contains__('class')):
+                self.pushButton_verDiagramaUML.setVisible(True)
+                self.label_claseNoEncontrada.setVisible(False)
+            else:
+                self.label_claseNoEncontrada.setVisible(True)
+                print('CLASE NO ENCONTRADA')
 
     def limpiarCodigo(self):
         new_list = []
